@@ -1,6 +1,54 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  
 }
+.AppHeader{
+ height: 50px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding:30px 15px;
+ border-bottom: 1px solid rgba(97, 17, 17, 0.15);
+ 
+}
+.Navleft{
+
+}
+.NavleftContent{
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.Program{
+  
+}
+.AddProgram{
+
+  display: flex;
+  flex: 3;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80px;
+  padding: 30px 20px;
+  margin: 34px;
+
+
+}
+.EditProgram{
+
+}
+.Layout{
+  
+}
+.Navbar{
+
+}
+
 
 .App-logo {
   height: 40vmin;
