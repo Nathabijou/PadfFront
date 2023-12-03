@@ -8,15 +8,15 @@ export default function EditProgram() {
     const {id}=useParams()
 
     const [programs, setPrograms]=useState({
-        name:"",
-        description:"",
-        indicator:"",
-        donor:"",
-        partner:"",
-        executor:""
+        nom:"",
+        description:"",       
+        bailleur:"",
+        partenaire:"",
+        mdod:"",
+        mo:""
     })
 
-    const{name,description,indicator,donor,partner,executor}=programs
+    const{nom,description,mo,Bailleur,Partenaire,mdod}=programs
     const onInputChange=(e)=>{
 
         setPrograms({...programs,[e.target.name]: e.target.value});
@@ -34,7 +34,7 @@ export default function EditProgram() {
     const onSubmit=async(e)=>{
 
         e.preventDefault();
-        await axios.put(`http://localhost:8080/program/${id}`, programs)
+        await axios.put(`http://localhost:8080/program`)
 
         navigate("/")
     };
@@ -52,13 +52,13 @@ export default function EditProgram() {
 
                       <form onSubmit={(e)=>onSubmit(e)}>
                       <div className="mb-3">
-                        <label htmlFor="Name" className="form-label">Name</label>
+                        <label htmlFor="Nom" className="form-label">Nom</label>
                         <input 
                          type="text" 
                          className="form-control"
                          placeholder="Entrer le nom du Programme"
-                         name="name"
-                         value={name}
+                         name="nom"
+                         value={nom}
                          onChange={(e)=>onInputChange(e)}
                          />
                       </div>
@@ -73,54 +73,57 @@ export default function EditProgram() {
                          value={description}
                          onChange={(e)=>onInputChange(e)}
                          />
-                      </div>
+                      </div>                    
 
                       <div className="mb-3">
-                        <label htmlFor="Indicator" className="form-label">Indicator</label>
-                        <input
-                         type="text" 
-                         className="form-control"
-                         placeholder="indicator "
-                         name="indicator"
-                         value={indicator}
-                         onChange={(e)=>onInputChange(e)}
-                         />
-                      </div>
-
-                      <div className="mb-3">
-                        <label htmlFor="Donor" className="form-label">Donor</label>
+                        <label htmlFor="Bailleur" className="form-label">Bailleur</label>
                         <input
                          type="text"  
                          className="form-control"
-                         placeholder="Donor "
-                         name="donor"
-                         value={donor}
+                         placeholder="Bailleur"
+                         name="Bailleur"
+                         value={Bailleur}
                          onChange={(e)=>onInputChange(e)}
                          />
                       </div>
 
                       <div className="mb-3">
-                        <label htmlFor="Partner" className="form-label">Partner</label>
+                        <label htmlFor="mo" className="form-label">M.O</label>
                         <input
                          type={"Text"} 
                          className="form-control"
-                         placeholder="Partener"
-                         name="partner"
-                         value={partner}
+                         placeholder="mo"
+                         name="mo"
+                         value={mo}
                          onChange={(e)=>onInputChange(e)}
                          />
                       </div>
+
                       <div className="mb-3">
-                        <label htmlFor="Executor" className="form-label">Executor</label>
+                        <label htmlFor="mdod" className="form-label">MDOD</label>
                         <input
                          type={"Text"} 
                          className="form-control"
-                         placeholder="Executor"
-                         name="executor"
-                         value={executor}
+                         placeholder="mdod"
+                         name="mdod"
+                         value={mdod}
                          onChange={(e)=>onInputChange(e)}
                          />
                       </div>
+
+                      <div className="mb-3">
+                        <label htmlFor="Partenaire" className="form-label">Partenaire</label>
+                        <input
+                         type={"Text"} 
+                         className="form-control"
+                         placeholder="Partenaire"
+                         name="Partenaire"
+                         value={Partenaire}
+                         onChange={(e)=>onInputChange(e)}
+                         />
+                      </div>
+                     
+                      
 
                       <button type="submit" className="btn btn-outline-success"> Submit</button>
                       <Link className="btn btn-outline-danger mx-5" to="/"> Cancel</Link>

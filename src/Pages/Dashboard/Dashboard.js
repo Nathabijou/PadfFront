@@ -14,7 +14,8 @@ import {
    Title,
    Tooltip,
    Legend,
- } from 'chart.js';
+ } 
+ from 'chart.js';
  import { Bar } from 'react-chartjs-2';
 
  ChartJS.register(
@@ -26,11 +27,12 @@ import {
    Legend
  );
 
+
 function Dashboard() {
     return (
         <div>
          <Space size={20} direction='vertical'>
-                <Typography.Title level={4}>Dashboard</Typography.Title>
+                <Typography.Title level={4}><strong>Dashboard</strong></Typography.Title>
                 <Space direction='horizontal'>
                     <Dasboardpp icon={<UserOutlined
                     
@@ -61,12 +63,12 @@ function Dashboard() {
                     />} title={"Beneficiaire Garcon"} value={12345}/>
                     <Dasboardpp icon={<UserOutlined
 
-                    style={{color:"green",
-                    backgroundColor:'rgba(0,260,0,0.20)',
-                    borderRadius: 20,
-                    fontSize:15,
-                    padding:8,
-                 }}
+                        style={{color:"green",
+                        backgroundColor:'rgba(0,260,0,0.20)',
+                        borderRadius: 20,
+                        fontSize:15,
+                        padding:8,
+                     }}
                     
                     />} title={"Facilitateur"} value={12345}/>
                     <Dasboardpp icon={<ProjectOutlined
@@ -81,33 +83,33 @@ function Dashboard() {
                     />} title={" Petit projet"} value={12345}/>
                     <Dasboardpp icon={<UserOutlined
 
-                            style={{color:"green",
-                            backgroundColor:'rgba(0,260,0,0.20)',
-                            borderRadius: 20,
-                            fontSize:15,
-                            padding:8,
+                        style={{color:"green",
+                        backgroundColor:'rgba(0,260,0,0.20)',
+                        borderRadius: 20,
+                        fontSize:15,
+                        padding:8,
                          }}
                     
                     />} title={"Quartier"} value={12345}/>
                     <Dasboardpp icon={<DollarCircleOutlined  
-                         style={{color:"green",
-                         backgroundColor:'rgba(0,260,0,0.20)',
-                         borderRadius: 20,
-                         fontSize:15,
-                         padding:8,
+                        style={{color:"green",
+                        backgroundColor:'rgba(0,260,0,0.20)',
+                        borderRadius: 20,
+                        fontSize:15,
+                        padding:8,
                       }}/>} title={"Salaire Total Beneficiaire"} value={12345}/>
 
-                </Space>
-                <Space>
-                  <RecentBeneficiaire/>
-                  <DashboardChart/>
-                </Space>
-         </Space>
-        </div>
-    )
-}
- function Dasboardpp({title,value, icon}){
-    return(
+                       </Space>
+                        <Space>
+                           <RecentBeneficiaire/>
+                           <DashboardChart/>
+                        </Space>
+                       </Space>
+                       </div>
+                      )
+            }
+   function Dasboardpp({title,value, icon}){
+             return(
                     <Card>
                         <Space direction='horizontal'>
                             {icon}
@@ -148,76 +150,76 @@ function Dashboard() {
          dataIndex:'quantity',
          }, 
          {
-            title: "quantity",
-            dataIndex:'quantity',
-            }, 
-            {
-               title: "quantity",
-               dataIndex:'quantity',
+         title: "quantity",
+         dataIndex:'quantity',
+         }, 
+         {
+         title: "quantity",
+         dataIndex:'quantity',
                }, 
 
-   ]}
-   loading={loading}
-   dataSource={dataSource}
-   pagination={false}
-   ></Table></>
-)}
+         ]}
+         loading={loading}
+         dataSource={dataSource}
+         pagination={false}
+         ></Table></>
+         )}
 
 function DashboardChart() {
       const [ageData, setAgeData] = useState({
          labels:[],
          datasets:[]
-      })
+         })
 
 
-   useEffect(() => {
-    getBeneficiaireAge().then(res=>{
-      const labels=res.carts.map(cart=>{
+        useEffect(() => {
+        getBeneficiaireAge().then(res=>{
+        const labels=res.carts.map(cart=>{
          return `User-${cart.userId }`
-      });
+         });
 
       const data=res.carts.map(cart=>{
          return cart.discountedTotal ;
-      });
+        });
 
       const dataSource  = {
          labels,
          datasets: [
-           {
-             label: 'Beneficiaire Age',
-             data: data,
-             backgroundColor: 'rgba(10, 120, 255, 1)',
-           },
+         {
+         label: 'Beneficiaire Age',
+         data: data,
+         backgroundColor: 'rgba(10, 120, 255, 1)',
+         },
            
          ],
-       };
+         };
    
 setAgeData(dataSource)
 
-    });
+          });
         
-   }, [])
+          }, [])
    
     const options = {
-      responsive: true,
-      plugins: {
-        legend: {
+          responsive: true,
+          plugins: {
+          legend: {
           position: 'bottom',
-        },
-        title: {
+          },
+          title: {
           display: true,
           text: 'Beneficiaire Age',
-        },
-      },
-    };
+          },
+          },
+          };
 
    
 
-   return (
-   <Card style={{width:600, height:350}}> 
-       <Bar options={options} data={ageData} />
-   </Card>
-   );
-}
+         return (
+         <Card style={{width:600, height:350}}> 
+            <Bar options={options} data={ageData} />
+         </Card>
+         );
+      }
 
 export default Dashboard

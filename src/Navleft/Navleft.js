@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/js/dist/dropdown'
 import './Navleft.css'
 import { Menu } from 'antd'
-import { AppstoreAddOutlined,ProjectOutlined, AppstoreOutlined, PaperClipOutlined, ShopOutlined, ShoppingFilled, UserOutlined } from '@ant-design/icons'
+import { AppstoreAddOutlined,DollarCircleOutlined, ProjectOutlined, AppstoreOutlined, PaperClipOutlined, ShopOutlined, ShoppingFilled, UserOutlined } from '@ant-design/icons'
 import { icons } from 'antd/es/image/PreviewGroup'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -33,8 +33,9 @@ items={[
 {
   label:" Program",
   icon: <AppstoreAddOutlined/>,
-  key:"/Dasboard"
+  key:"/App"
 },
+
 
 {
   label:" Project",
@@ -44,11 +45,11 @@ items={[
 {
   label: " Dasboard",
   icon: <AppstoreOutlined />,
-  key:"/dashboard"
+  key:"/App/dashboard"
 },
 
 {
-  label:" Etat d'avan",
+  label:" Etat d'avancement",
   icon:<PaperClipOutlined/>,
   key:"/Dasboard"
 },
@@ -66,20 +67,16 @@ items={[
   
 },
 
+
 {
-  label:" Dasboard",
-  icon: <ShoppingFilled/>,
-  key:"/Dasboard"
-}, 
-{
-  label: " Dasboard",
+  label: "Finance",
   icon: <AppstoreAddOutlined/>,
   key:"/Dasboard",
 },
 
 {
   label:" Dasboard",
-  icon: <ShopOutlined/>,
+  icon: <PaperClipOutlined/>,
   key:"/Dasboard"
 },
 
@@ -88,12 +85,13 @@ items={[
   icon: <AppstoreOutlined/>,
   key:"/Dasboard"
 },
-
 {
-  label:" Dasboard",
-  icon:<PaperClipOutlined/>,
+  label:"Activité",
+  icon: <ShoppingFilled/>,
   key:"/Dasboard"
-},
+}, 
+
+
 
 {
   label:" Dasboard",
@@ -112,6 +110,18 @@ items={[
   icon: <ShoppingFilled/>,
   key:"/Dasboard"
 },
+{
+  label:" Dasboard",
+  icon: <ShoppingFilled/>,
+  key:"/Dasboard"
+},
+{
+  label:"Log Out",
+  icon: <UserOutlined/>,
+  key:"/"
+  
+},
+
 
 
 

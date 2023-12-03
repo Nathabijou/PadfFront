@@ -1,87 +1,124 @@
 
+
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; 
 import Navbar from './Layout/Navbar';
 import Home from './Pages/AppHeader';
 import AddProgram from './Program/AddProgram';
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import React from "react"; // N'oubliez pas d'importer React depuis "react"
+import { Routes, Route, Outlet } from "react-router-dom"; // Nous n'avons plus besoin de <Router> ici
 import EditProgram from './Program/EditProgram';
 import ViewProgram from './Program/ViewProgram';
-import ProjectComponent from './ProjectComponent/ProjectComponent';
-import AddProjectComponent from './ProjectComponent/AddProjectComponent';
-import EditProjectComponent from './ProjectComponent/EditProjectComponent';
-import ViewProjectComponent from './ProjectComponent/ViewProjectComponent';
+
 import AddPetitProjet from './Projet/AddPetitProjet';
 import PetitProjet from './Projet/PetitProjet';
 import EditPetitProjet from './Projet/EditPetitProjet';
-import ViewPettitProjet from './Projet/ViewPetitProjet';
+import ViewPetitProjet from './Projet/ViewPetitProjet';
 import Navleft from './Navleft/Navleft';
 import Program from './Program/Program';
-import AppHeader from './Pages/AppHeader';
 import { Space, Typography } from 'antd';
 import Dashboard from './Pages/Dashboard/Dashboard';
-import Project from './Pages/Project/Project';
 import Beneficiaire from './Pages/Beneficiaire/Beneficiaire';
 import AddBeneficiaire from './Pages/Beneficiaire/AddBeneficiaire';
-import Analytics from './Analytics';
+import Login1 from './Register/Login1';
+
+import Register from './Register/Register';
+import AddComposante from './Composante/AddComposante';
+import Composante from './Composante/Composante';
+import EditComposante from './Composante/EditComposante';
+import ViewComposante from './Composante/ViewComposante';
+import TypeProjet from './TypeProjet/TypeProjet';
+import AddTypeProjet from './TypeProjet/AddTypeProjet';
+import Zone from './Projet/Geographie/zone';
+import Departement from './Projet/Geographie/Departement';
+import Commune from './Projet/Geographie/Commune';
+import SectionCommuale from './Projet/Geographie/SectionCommunale';
+import Quartier from './Projet/Geographie/Quartier';
+import Presence from './Presence/Presence';
+import AddPresence from './Presence/AddPresence';
+import EditBeneficiaire from './Pages/Beneficiaire/EditBeneficiaire';
+import Payrolls from './Payrolls/Payrolls';
 
 
 
 
 function App() {
   return (
-    
-    <div  className=''> 
-    <div>
-        
-    <Router>
-    
-    <Navbar/>
+    <div className=''> 
+      <Navbar />
+      <Space className='NavleftContent' >
+        <Navleft/>
+        <Typography/>
+        <Outlet /> 
+        <Routes>
+  <Route path="/home" element={<Home />} />
+  <Route path="/login1" element={<Login1 />} />
+  <Route path="/login" element={<Login1 />} />
+  <Route path='/navleft' element={<Navleft/>}/>
 
-    <Space className='NavleftContent' >
-      
-      <Navleft/>
-      
-      <Typography/>
-      
 
-          <Routes>
+  
 
-                 <Route exact path="/" element={<Program/>}/>
-                 <Route exact path="/" element={<Dashboard/>}/>
-                 <Route exact path="/" element={<Project/>}/>
+  <Route path='/zone' element={<Zone/>}/>
+  <Route path='/departement' element={<Departement/>}/>
+  <Route path="/Zone/:zoneId/Departement" element={<Departement />} />
+  
 
-                 <Route exact path="/addprogram" element={<AddProgram />}  />          
-                 <Route exact path="/addprojectcomponent" element={<AddProjectComponent/>} />
-                 <Route path='/AddPetitProjet' element={<AddPetitProjet/>}/>
-                 <Route path='/AddBeneficiaire' element={<AddBeneficiaire/>}/>
-                 <Route path='/Typography' element={<Typography/>}/>
-                 <Route path='Dashboard' element={<Dashboard/>}/>
+  <Route path='/commune' element={<Commune/>}/>
+  <Route path='/sectioncommunale' element={<SectionCommuale/>}/>
+  <Route path='/quartier' element={<Quartier/>}/>
+  
 
-                 <Route exact path="/editprogram/:id"     element={<EditProgram/>}/>
-                 <Route exact path="/projectcomponent/editprojectcomponent/:id" element={<EditProjectComponent/>}/>
-                 <Route exact path="/petitprojet/editpetitprojet/:id" element={<EditPetitProjet/>}/>
+  <Route path="/Register" element={<Register />} />
+  <Route path="/dashboard" element={<Dashboard />} />
+ 
+  <Route path="/addprogram" element={<AddProgram />} />
+  
+  <Route path="/composante/addComposante" element={<AddComposante />} />
 
-                 <Route path="/viewprogram/:id"          element={<ViewProgram />} />
-                 <Route path="/viewprojectcomponent/:id" element={<ViewProjectComponent/>}/>   
-                 <Route path="/petitprojet/viewpetitprojet/:id"      element={<ViewPettitProjet/>}/>  
-          
-                 <Route path="/PetitProjet" element={<PetitProjet/>}/> 
-                 <Route path="/projectcomponent/petitprojet/beneficiaire/:id" element={<Beneficiaire/>}/>
-                 <Route path='/projet/petitprojet/' element={<PetitProjet/>}/>
-                 <Route path="/program/:programId/projectcomponent/:componentId" element={<ProjectComponent />} />
-                     
-                 <Route path='/program/:programId/projectComponent/:projectComponentId' element={<ProjectComponent/>}/>
-                 <Route path="/program/:programId/projectcomponent/:componentId" component={ProjectComponent} />
+  <Route path="/program/:programId/addcomposante" element={<AddComposante />} />
+  <Route path="/program/:programId/composante/:composanteId/addtypeProjet" element={<AddTypeProjet/>}/>
 
-              </Routes> 
-         </Space> 
-    </Router>
+  <Route path="/AddBeneficiaire" element={<AddBeneficiaire />} />
 
+  <Route path="/editprogram/:id" element={<EditProgram />} />
+  <Route path="/composante/editcomposante/:id" element={<EditComposante />} />
+  <Route path="/petitprojet/editpetitprojet/:id" element={<EditPetitProjet />} />
+  <Route path="/viewprogram/:id" element={<ViewProgram />} />
+  <Route path="/composante/viewcomposante/:id" element={<ViewComposante />} />
+  <Route path="/petitprojet/viewpetitprojet/:id" element={<ViewPetitProjet />} />
+
+
+
+ 
+  <Route path="/program/:programId/composante/:composanteId/typeprojet/:typeprojetId/petitprojet/:petitprojetId/addpetitprojet" element={<AddPetitProjet />} />
+  <Route path="/program/:programId/composante/:composanteId/typeprojet/:typeprojetId/petitprojet/:petitprojetId/Beneficiaire/:BeneficiaireId/Addbeneficiaire" element={<AddBeneficiaire />} />
+
+
+
+  <Route path="/program/:programId/composante/:composanteId/typeprojet/:typeprojetId/petitprojet/:petitprojetId/Beneficiaire/:beneficiaireId/EditBeneficiaire" element={<EditBeneficiaire/>} />
+  <Route path="/typeprojet/:typeprojetId/petitprojet/:petitprojetId//Beneficiaire/:beneficiaireId/EditBeneficiaire" element={<EditBeneficiaire/>} />
+  <Route path='/beneficiaire/:beneficiaireId/presence' element={<Presence/>}/>
+  <Route path='/beneficiaire/:beneficiaireId/presence/payrolls' element={<Payrolls/>}/>
+  <Route path='/beneficiaire/:beneficiaireId/presence/Addpresence' element={<AddPresence/>}/>
+  <Route path="/beneficiaire/:BeneficiaireId/presence" element={<AddPresence />} />
+  <Route path="/App/program/:programId/composante/:composanteId/beneficiaire/:BeneficiaireId/addpresence" element={<AddPresence />} />
+
+
+  
+  
+ 
+  <Route path="/" element={<Program />} /> {/* Page d'accueil */}
+  <Route path="/program/:programId/composante/:composanteId" element={<Composante />} />
+  <Route path="/program/:programId/composante/:composanteId/typeprojet/:typeprojetId" element={<TypeProjet/>} />
+ 
+  <Route path="/program/:programId/composante/:composanteId/typeprojet/:typeprojetId/petitprojet/:petitprojetId" element={<PetitProjet />} />
+  <Route path="/typeprojet/:typeprojetId/petitprojet/:petitprojetId/beneficiaire" element={<Beneficiaire/>}/>
+
+</Routes>
+
+      </Space> 
     </div>
-    </div>
-
-    
   );
 }
 

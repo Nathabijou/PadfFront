@@ -15,7 +15,8 @@ export default function ViewPettitProjet() {
         nmbreBeneficiaireIndirect:"",
         secteurdintervention:"",
         gps1:"",
-        gps2:""
+        gps2:"",
+        totalbeneficiaire:""
     });
 
 
@@ -91,7 +92,7 @@ export default function ViewPettitProjet() {
 
                     <li className="list-groupe-item">
                         <b>Total Beneficiaire:</b>
-                        {petitprojet.gps2}
+                        {petitprojet.totalbeneficiaire}
                     </li>
 
                 </ul>

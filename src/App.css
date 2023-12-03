@@ -12,7 +12,7 @@
  justify-content: space-between;
  align-items: center;
  padding:30px 15px;
- border-bottom: 1px solid rgba(97, 17, 17, 0.15);
+ border-bottom: 1px solid rgba(194, 6, 6, 0.15);
  
 }
 .Navleft{
@@ -57,7 +57,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 50s linear;
   }
 }
 

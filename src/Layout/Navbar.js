@@ -4,75 +4,96 @@ import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppHeader from '../Pages/AppHeader'
 
+import DropdownProfiles from './DropdownProfiles'
+import { useState } from 'react'
+
 
 export default function(){
+   const [openProfles, setOpenProfiles] = useState(false);
 
   return (
 
     <div className=''>
 
-<nav className="navbar navbar-expand navbar-dark bg-secondary">
+<nav className="navbar navbar-expand navbar-dark pt navcol">
   <div className="container-fluid">
       <AppHeader/>
-                <Link className="navbar-brand" to="/" > 
-                    <a href="#" className="nav-link text-white fs-5 mx-4" aria-current="page">
+                <Link className="navbar-brand" to="/App" > 
+                    <a href="#" className="nav-link text-white fs-5 mx-2" aria-current="page">
                       <i className='bi bi-house-fill'></i>
                     </a>   
                </Link> 
    
 
-    <button className="navbar-toggler"
-     type="button" data-bs-toggle="collapse" 
-     data-bs-target="#navbarSupportedContent" 
-     aria-controls="navbarSupportedContent" 
-     aria-expanded="false" 
-     aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
+   
     
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/program">Programmes</a>
+    <div className="collapse navbar-collapse " >
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+        
+        <li>
+        <select className="form-select droplist " aria-label="Default select example">
+            <option selected>Zone</option>
+            <option value="1">Zone1</option>
+            <option value="2">Zone2</option>
+            <option value="3">Zone 2 bis</option>
+            <option value="3">Zone3</option>
+            <option value="3">Zone4</option>
+            <option value="3">Zone6</option>
+          </select>
+
         </li>
         
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
+          <a className="nav-link active" aria-current="page" href="/App/program/1/composante/1">Composante</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
+          <a className="nav-link active" aria-current="page" href="/program/1/projectcomponent/1">Gestion-de-Stock</a>
         </li>
+
+        
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
+          <a className="nav-link active" aria-current="page" href="https://docs.google.com/spreadsheets/d/1YJ0xW0mNbZdZ_9HXgN4V_qEQzTBl9Y_U_s51PGx6mkI/edit#gid=197995468"> Suivi-des-Jalons</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="www.algoleaders.com">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="www.algoleaders.com">Home</a>
-        </li>
-       
+
            
       </ul>  
     </div>
 
-    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-       <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="https://www.algoleaders.com/">Contact</a>
-       </li>
+    <form className="d-flex">
+        <input className="form-control me-1 droplist2" type="search" placeholder="Search" />
+       
+      </form>
+
+    <ul className="navbar-nav me-auto mb-1 mb-lg-0 ">
+          <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="https://www.algoleaders.com/">Contact</a>
+                
+          </li>
     </ul>
 
     
 
 
-    <Link className='' >  
-                    <a href="#" className="nav-link text-white fs-5 mx-4" aria-current="page">
-                      <i className='bi bi-gear'></i>
-                    </a>   
-    </Link> 
+   
+                  
+    <span className='text-2x1 font-semibold cursor-pointer' onClick={() => setOpenProfiles((prev)=>!prev)}>
+      
+    <ul className="navbar-nav me-auto mb-1 mb-lg-0">
+    <div className='flex flex-col boutmap'>
+          <i className='bi bi-gear'></i>           
+    </div>     
+    </ul>
+
+      
+       
+   </span>
+   
+
+    {
+      openProfles && <DropdownProfiles/>
+    }
+    
+    
     
 
 

@@ -12,7 +12,7 @@ import { Badge } from 'antd';
 function AppHeader() {
   return (
     <div className='AppHeader'>  
-    <Link to="https://www.padf.org/haiti/" > <img   width={150} src={im}></img>  </Link> 
+    <Link to="https://www.padf.org/haiti/" > <img   width={100} src={im}></img>  </Link> 
  </div>
   ); 
 }

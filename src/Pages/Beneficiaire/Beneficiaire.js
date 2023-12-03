@@ -1,85 +1,135 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
 
 export default function Beneficiaire() {
-  const [beneficiaire, setBeneficiaire] = useState([]);
+  const { programId, composanteId, typeprojetId, petitprojetId, beneficiaireId } = useParams();
+
+  const [beneficiaires, setBeneficiaires] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    loadBeneficiaire();
-  }, []);
+    loadBeneficiaires();
+  }, [typeprojetId, petitprojetId]);
 
-  const loadBeneficiaire = async () => {
+  const loadBeneficiaires = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/beneficiaire");
-      setBeneficiaire(response.data);
+      const response = await axios.get(`http://localhost:8080/petitprojet/${petitprojetId}/beneficiaire`);
+      setBeneficiaires(response.data);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        console.error('Erreur de réponse du serveur :', error.response.data);
+      } else if (error.request) {
+        console.error('Aucune réponse du serveur');
+      } else {
+        console.error('Erreur lors de la requête Axios :', error.message);
+      }
+      setLoading(false);
     }
   };
 
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredBeneficiaires = beneficiaires.filter((beneficiaire) =>
+    beneficiaire.nom.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="container">
-      <h2 className="text-center">Beneficiaire</h2>
-      <div className="py-4">
-        <table className="table border shadow">
+      <div className="text-center titretext">Bénéficiaires du Projet</div>
+      <div className="py-9 mt-4 mx-4 dx-3 beneficiaire-list">
+        <div className="sticky-buttons d-flex justify-content-between">
+          <Link to={`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${typeprojetId}`}>
+            <svg width="50" height="40" fill="currentColor" className="bi bi-arrow-left" viewBox="3 0 5 16">
+              <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+            <Link
+              className='btn btn-success'
+              to={`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${petitprojetId}/Beneficiaire/${beneficiaireId}/Addbeneficiaire`}
+              style={{ fontSize: '13px', padding: '3px 5px', color: 'white', marginLeft: "30px" }}
+            >
+              + Nouveau Beneficiaire
+            </Link>
+          </Link>
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Search Beneficiaries"
+              className="form-control form-control-sm search-input"
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+          </div>
+        </div>
+        <table className="table table-striped table-hover">
           <thead className="table-light">
-
-
-          
-
-          <Link  to={"/petitprojet"} > 
-
-          <i class="bi bi-arrow-left-circle mp-4" ></i>
-
-        </Link>
-
-<Link className='btn btn-success mx-8'  to="/addbeneficiaire"> Nouveau Beneficiaire</Link>
-
-
             <tr>
-              <th scope="col">Code</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Prenom</th>
-              <th scope="col">Sexe</th>
-              <th scope="col">Age</th>
-              <th scope="col">Quartier</th>
-              <th scope='col'></th>
+              <th scope="col" style={{ position: "sticky", top: "0" }}>N°</th>
+              <th scope="col" style= {{ position: "sticky", top: "0" }}>Nom</th>
+              <th scope="col" style ={{ position: "sticky", top: "0" }}>Prénom</th>
+              <th scope="col" style ={{ position: "sticky", top: "0" }}>Qualification</th>
+              <th scope="col" style= {{ position: "sticky", top: "0" }}>Sexe</th>
+              <th scope="col" style= {{ position: "sticky", top: "0" }}>Identification</th>
+              <th scope="col" style= {{ position: "sticky", top: "0" }}>telephone</th>
+              <th scope="col" style= {{ position: "sticky", top: "0" }}>Actions</th>
             </tr>
           </thead>
-
-          <tbody className="table table-striped table-hover">
-            {beneficiaire.map((beneficiaire) => (
+          <tbody className="table-group-divider">
+            {filteredBeneficiaires.map((beneficiaire, index) => (
               <tr key={beneficiaire.id}>
-                <th scope="row">{beneficiaire.id}</th>
+                <th scope="row">{index + 1}</th>
                 <td>
-                
-                  <Link to={`/`}> {beneficiaire.nom}</Link></td>
+                    <Link to={`/App/beneficiaire/${beneficiaire.id}/presence`}>{beneficiaire.nom}</Link>
+                </td>
+
                 <td>{beneficiaire.prenom}</td>
-                <td>{beneficiaire.statut}</td>
+                
+                <td>{beneficiaire.qualification}</td>
+                <td>{beneficiaire.sexe}</td>
+                <td>{beneficiaire.identification}</td>
+                <td>{beneficiaire.telephonecontact}</td>
                 <td>
-                                
                   <Link to={`/viewbeneficiaire/${beneficiaire.id}`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye" viewBox="0 0 16 16">
-                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-eye"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"
+                      />
+                      <path
+                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"
+                      />
                     </svg>
                   </Link>
 
-                  <Link  
-                      to={`/projectcomponent/editbeneficiaire/${beneficiaire.id}`}>
-                      <svg  width="46" height="16" fill="currentColor" className="bi bi-pen" viewBox="0 0 16 16">
-                      <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-                      </svg>
-                  </Link>
+                  <Link to={`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${petitprojetId}/beneficiaire/${beneficiaireId}/EditBeneficiaire`}>
 
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                    <svg
+                      width="46"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-pen"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+                    />
+                  </svg>
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
-  );
+  </div>
+);
 }

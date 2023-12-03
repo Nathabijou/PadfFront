@@ -2,26 +2,26 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-export default function EditProjectComponent() {
+export default function EditComposante() {
     let navigate=useNavigate( );
 
     const {id}=useParams()
 
-    const [projectcomponent, setProjectComponent]=useState({
+    const [Composante, setComposante]=useState({
         name:"",
         description:"",
-        statut:"",       
+             
     })
 
-    const{name,description,statut}=projectcomponent
+    const{name,description}=Composante
     const onInputChange=(e)=>{
 
-        setProjectComponent({...projectcomponent,[e.target.name]: e.target.value});
+        setComposante({...Composante,[e.target.name]: e.target.value});
     };
 
     useEffect(()=>{
 
-        loadProjectComponent();
+        loadComposante();
     },[]);
 
 
@@ -30,14 +30,14 @@ export default function EditProjectComponent() {
     const onSubmit=async(e)=>{
 
         e.preventDefault();
-        await axios.put(`http://localhost:8080/projectcomponent/${id}`, projectcomponent)
+        await axios.put(`http://localhost:8080/composante/${id}`, Composante)
 
         navigate("/")
     };
 
-    const loadProjectComponent= async()=>{
-        const result=await axios.get(`http://localhost:8080/projectcomponent/${id}`)
-        setProjectComponent(result.data)
+    const loadComposante= async()=>{
+        const result=await axios.get(`http://localhost:8080/composante/${id}`)
+        setComposante(result.data)
     }
 
     return (
@@ -71,17 +71,7 @@ export default function EditProjectComponent() {
                          />
                       </div>
 
-                      <div className="mb-3">
-                        <label htmlFor="Statut" className="form-label">Statut</label>
-                        <input
-                         type="text" 
-                         className="form-control"
-                         placeholder="indicator "
-                         name="statut"
-                         value={statut}
-                         onChange={(e)=>onInputChange(e)}
-                         />
-                      </div>
+                      
 
                     
                       <button type="submit" className="btn btn-outline-success"> Submit</button>

@@ -2,25 +2,24 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-export default function ViewProjectComponent() {
+export default function ViewComposante() {
 
-    const[projectcomponent, setProjectComponent]= useState({
+    const[composante, setComposante]= useState({
         name:"",
-        description:"",
-        statut:"",  
+        description:"",     
     });
 
     const {id}=useParams();
 
     useEffect(()=>{
 
-        loadProjectComponent()
+        loadComposante()
 
     },[])
 
-    const loadProjectComponent=async ()=>{
-        const result=await axios.get(`http://localhost:8080/projectcomponent/${id}`)
-        setProjectComponent(result.data)
+    const loadComposante=async ()=>{
+        const result=await axios.get(`http://localhost:8080/composante/${id}`)
+        setComposante(result.data)
     }
 
     return (
@@ -31,27 +30,27 @@ export default function ViewProjectComponent() {
                       <h2 className="text-center m-4 ">Détails du Composant</h2>
         <div className="card">
             <div className="card-header">
-                details du Composant id: {projectcomponent.id}
+                details du Composant id: {composante.id}
 
                 <ul className="list-group list-group-flush">
 
                     <li className="list-groupe-item">
                         <b>name:</b>
-                        {projectcomponent.name}
+                        {composante.name}
                     </li>
                     <li className="list-groupe-item">
                         <b>description:</b>
-                        {projectcomponent.description}
+                        {composante.description}
                     </li>
                     <li className="list-groupe-item">
                         <b>statut:</b>
-                        {projectcomponent.statut}
+                        {composante.statut}
                     </li>
 
                 </ul>
             </div>
         </div>
-        <Link className="btn btn-primary my-2" to={"/projectcomponent"}>Back</Link>
+        <Link className="btn btn-primary my-2" to={"/composante"}>Back</Link>
         </div>
         </div>
         </div>
