@@ -54,7 +54,7 @@
                         <div className="row addprojet">
                         <div className="col ">
                           <label htmlFor="Nom" className="form-label">
-                          <h2 className='nomchamp'>Nom</h2> 
+                          <h2 className='nomchamp'>Nom:</h2> 
                           </label>
                           <input 
                           type="text" 
