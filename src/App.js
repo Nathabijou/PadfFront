@@ -39,6 +39,10 @@ import Payrolls from './Payrolls/Payrolls';
 import { jsx as _jsx } from 'react/jsx-runtime';
 import { jsxs as _jsxs } from 'react/jsx-runtime';
 
+//Rooting API
+
+
+
 
 
 
@@ -47,6 +51,9 @@ import { jsxs as _jsxs } from 'react/jsx-runtime';
 
 
 function App() {
+
+  
+
   return (
     <div className=''> 
       <Navbar />
