@@ -11,3 +11,9 @@
     width: 200px;
     margin: 100px;
   }
+
+  @media screen and(max-width: 10px) {
+    .navleft{
+      width: 20px;
+    }
+  }

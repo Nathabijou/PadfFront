@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import Navleft from '../Navleft/Navleft';
 
 export default function Program() {
-  const [program, setPrograms] = useState([]);
+  const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProgram, setSelectedProgram] = useState(null);
-  const [openProfles, setOpenProfiles] = useState(false);
+  const [openProfiles, setOpenProfiles] = useState(false);
 
   useEffect(() => {
     loadPrograms();
@@ -16,7 +16,8 @@ export default function Program() {
 
   const loadPrograms = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/program');
+      const response = await axios.get('http://localhost:8080/programs');
+      console.log("Programs Data:", response.data); // Ajout du log pour déboguer
       setPrograms(response.data);
       setLoading(false);
     } catch (error) {
@@ -29,26 +30,31 @@ export default function Program() {
     setSearchTerm(term);
   };
 
-  const filteredPrograms = program.filter((program) =>
-  (program.nom ?? '').toLowerCase().includes(searchTerm.toLowerCase())
-);
-
+  const filteredPrograms = programs.filter((program) =>
+    (program.nom ?? '').toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const displayProgramDetails = (program) => {
     setSelectedProgram(program);
   };
 
   return (
-    <div className="container-fluid">
-      {
-         openProfles && <Navleft/>
-      }
-      <div className="text-center titretext">Programme</div>
-      <div className="py-3 mt-4 mx-md-4 dx-3 beneficiaire-list">
+    <div className="container">
+      
+      {openProfiles && <Navleft />}
+
+
+      <div className="titretext">
+        Programme 
+      </div>
+
+      <div className='titrereports slideFromRight'>
+  &lt;&lt;   Filet de Sécurité Sociale Temporaire et Compétence pour les Jeunes    &gt;&gt;
+</div>
+      <div className="py mt-4 mx-md-4 dx-3 beneficiaire-list">
+        
         <div className="sticky-buttons d-flex justify-content-between">
-          
           <Link
-            //className="btn btn-success"
             to="/App/addprogram"
             style={{
               fontSize: '12px',
@@ -68,28 +74,27 @@ export default function Program() {
             />
           </div>
         </div>
+        <div >
         <div className="table-responsive">
-          <table className="table table-bordered table-striped"> {/* Utilisation de classes Bootstrap pour la table */}
+        <table className="table table-bordered table-striped ">
             <thead className="table-success">
               <tr>
                 <th className="table-dark">#</th>
-                
                 <th>Code</th>
                 <th>Nom</th>
                 <th>Bailleur</th>
                 <th>M.O</th>
                 <th>MDOD</th>
                 <th>Partenaire</th>
-              
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody  className='table-group-divider'>
+            <tbody className="table-group-divider">
               {filteredPrograms.map((program) => (
                 <tr key={program.id}>
                   <td>{program.id}</td>
-                  <td >{program.code}</td>
-                  <td  >
+                  <td>{program.code}</td>
+                  <td>
                     <Link
                       to={`program/${program.id}/composante/${program.id}`}
                       onClick={() => displayProgramDetails(program)}
@@ -97,16 +102,13 @@ export default function Program() {
                       {program.nom}
                     </Link>
                   </td>
-                  <td >{program.bailleur}</td>
+                  <td>{program.bailleur}</td>
                   <td>{program.mo}</td>
                   <td>{program.mdod}</td>
                   <td>{program.partenaire}</td>
                   <td>
                     <Link to={`/App/viewprogram/${program.id}`}>
                       <i className="bi bi-eye"></i>
-                    </Link>
-                    <Link to={`/editprogram/${program.id}`}>
-                      <i className="bi bi-pen"></i>
                     </Link>
                   </td>
                 </tr>
@@ -119,11 +121,11 @@ export default function Program() {
         <div className="program-details">
           <h2>Détails du programme</h2>
           <p>Nom : {selectedProgram.nom}</p>
-          <p>Nom : {selectedProgram.description}</p>
+          <p>Description : {selectedProgram.description}</p>
           {/* Ajoutez d'autres détails ici */}
         </div>
       )}
-      
+    </div>
     </div>
   );
 }

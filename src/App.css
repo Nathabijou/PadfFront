@@ -1,13 +1,78 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
+/*
+
+<Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+      <div style={{ width: '118%', maxWidth: 'auto', justifyContent:'center', height: '120%', margin: 'auto', position: 'absolute', marginTop: '200px', marginLeft: '0px ' }}>
+        {getZoneBarChartData() && (
+          <Card style={{ width: '100%', position: 'relative', marginRight: 'auto', height: '350px', maxHeight: '400px', maxWidth: 'auto' }}>
+            <Bar data={getZoneBarChartData()} />
+          </Card>
+        )}
+      </div>
+
+      </Col>
+
+#238237238
+#231232232
+body {
+  overflow: auto;
   height: 100vh;
-  
+  margin: 0;  
 }
+*/
+/*tableau des details*/
+/* Ajoutez ces styles dans votre fichier CSS 
+.table-container {
+  overflow: auto;
+  
+  height: 100px;
+  display: flex;
+}
+@media (max-width: 576px) {
+  .table-container {
+    overflow-x: auto;
+  }
+}
+/* Styles supplémentaires pour la lisibilité sur des petits écrans */
+
+.table-responsive {
+  overflow-x: 100px;
+}
+
+.table {
+  width: 100%;
+}
+
+
+
+@media (max-width: 576px) {
+  .table {
+    font-size: 12px;  /* Ajustez la taille de la police ou d'autres styles pour les petits écrans */
+  }
+}
+
+
+@media (max-width: 576px) {
+  .table .hide-on-small-screen {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  .table td, .table th {
+    font-size: 14px;  /* Ajustez la taille de la police pour les petits écrans */
+  }
+}
+.graph-section {
+  overflow-y: auto; /* Ajoute une barre de défilement vertical si le contenu est trop long */
+  max-height: 500px; /* Ajustez la hauteur maximale selon vos besoins */
+}
+
+
+
+
+
 .AppHeader{
  height: 50px;
+ max-width: 100%;
  display: flex;
  justify-content: space-between;
  align-items: center;
@@ -15,8 +80,11 @@
  border-bottom: 1px solid rgba(194, 6, 6, 0.15);
  
 }
-.Navleft{
-
+.btn-success{
+ size: 100px;
+ background-color: #35997C;
+ border-radius: 5px;
+ display: flex;
 }
 .NavleftContent{
   display: flex;
@@ -24,9 +92,455 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-.Program{
+
+
+/* size diagramme compile*/
+:root {
+  --graph-height: 300px; /* Valeur initiale */
+}
+
+.graph-card {
+  height: var(--graph-height);
+}
+
+/* T Liste des beneficiaire*/
+.independent-chart {
+  position: absolute;
+  width: 430px;
+  height: 100px;
+  max-width: 100%;
+  left: 30%;
+  top: -44.5%;
+  max-height: 100px;
+  margin-top: 59.4%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* Ajustez la valeur de right selon vos besoins */
+}
+.inetrface {
+  overflow: auto;
+  height: 100vh; /* Set a maximum height for the page */
+}
+
+.slds-card {
+  border-radius: 12px;
+  box-shadow: 0 8px 16px 0 rgba(48, 49, 51, 0.1);
+  border-color: #fff;
+  background-color: #fff;
+}
+/* RecentBeneficiaire.css */
+
+@media (max-width: 576px) {
+  .responsive-table {
+    width: 270px;
+    max-height: 2400px;
+    overflow-y: auto;
+    height: 400px;
+    top: 500%;
+    margin-top: 200%;
+    max-height: auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .chart-card {
+    width: 100%;
+    top: 100px;
+  }
+}
+
+/*nbre de beneficiaire*/
+
+.bar-chart-containers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createreport {
+  color: #fff;
+  background-color: #1d6c56f9;
+  background-position:  3;
+  border-radius: 5px;
+  font-size: medium;
+  padding: 0px 20px;
+  left: auto;
+  box-shadow: 10 10 10px rgb(5, 114, 3);
+  transition: background-color 0.6s ease, transform 0.3s ease; /* Ajout de transitions pour une animation en douceur */
+  animation: pulse 1.5s infinite; /* Ajout d'une animation pulsée initiale */
+}
+
+.createreport:hover {
+  background-color: #1362ac; /* Couleur de fond lorsque survolé */
+  transform: scale(1.2); /* Légère mise à l'échelle lorsqu'il est survolé */
+  animation:alternate;
+  color: #561176; /* Désactive l'animation pulsée pendant le survol */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.createreportts {
+  color: #f8f8f8;
+  background-color: #0673e8f9;
+  background-position:  3;
+  border-radius: 10px;
+  font-size: medium;
+  padding: 10px 0px;
+  left: auto;
+  box-shadow: 10 10 10px rgb(232, 7, 7);
+  transition: background-color 0.6s ease, transform 0.3s ease; /* Ajout de transitions pour une animation en douceur */
+  animation: pulse 1.5s infinite; /* Ajout d'une animation pulsée initiale */
+}
+/* ProjectInfo.css */
+
+.project-info {
+  background-color: #3c5f94f8;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  box-sizing: border-box;
+  width: auto; /* Utilisation de width: auto; pour une largeur flexible */
+  max-width: auto;
+  display: flex;
+  flex-direction: column;
+  font-weight: 100px;
+  max-block-size: none;
   
 }
+
+.project-info div {
+  margin-bottom: auto;
+  display: flex;
+  font-weight: 100px;
+  flex-direction: column;
+  font-weight: 100px;
+  max-block-size: none;
+  
+}
+@media (max-width: 1000px) {
+  .project-info {
+    position: static; /* Change la position en static pour que cela occupe tout l'espace disponible en largeur */
+    right: auto; /* Annule la propriété right pour permettre le passage en bas */
+    width: 1000%; /* Largeur à 100% pour occuper toute la largeur de l'écran */
+  }
+}
+
+.chifre{
+  padding: 3px;
+  width: 10px;
+  text-align: right;
+  font-size: 15px;
+}
+
+
+
+.titres{
+  color: #0a8f9b;
+  background-color: #f8f8f8;
+  background-size: 200px;
+  border-radius: 3px;
+  size: 20px;width: 100%;
+  font-weight: 100px;
+  padding: 3px;
+}
+.titres div{
+  margin-bottom: 10px;
+}
+
+
+
+
+.createreportts:hover {
+  background-color: #1362ac; /* Couleur de fond lorsque survolé  createreportsst*/
+  transform: scale(1); /* Légère mise à l'échelle lorsqu'il est survolé */
+  animation:alternate; /* Désactive l'animation pulsée pendant le survol */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.createreportsst {
+  color: #f8f8f8;
+  background-color: #0673e8f9;
+  background-position:  3;
+  border-radius: 10px;
+  font-size: medium;
+  padding: 10px 0px;
+  left: auto;
+  box-shadow: 10 10 10px rgb(232, 7, 7);
+  transition: background-color 0.6s ease, transform 0.3s ease; /* Ajout de transitions pour une animation en douceur */
+  animation: pulse 1.5s infinite; /* Ajout d'une animation pulsée initiale */
+}
+
+.createreportsst:hover {
+  background-color: #1362ac; /* Couleur de fond lorsque survolé  createreportsst*/
+  transform: scale(1.2); /* Légère mise à l'échelle lorsqu'il est survolé */
+  animation:alternate; /* Désactive l'animation pulsée pendant le survol */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.createreports {
+  color: #f8f8f8;
+  background-color: #188768f9;
+  border-radius: 7px;
+  font-size: medium;
+  top: 15px;
+  transition: background-color 0.6s ease, transform 0.3s ease; /* Ajout de transitions pour une animation en douceur */
+  animation: pulse 1.5s infinite; /* Ajout d'une animation pulsée initiale */
+}
+
+.createreports:hover {
+  background-color: #f4c90b; /* Couleur de fond lorsque survolé */
+  transform: scale(1.2); /* Légère mise à l'échelle lorsqu'il est survolé */
+  animation:alternate; /* Désactive l'animation pulsée pendant le survol */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+.titretext{
+  border-radius: 5px;
+  box-shadow: 0 6px 4px 0 rgba(21, 46, 107, 0.599);
+  border-color: #72c3d0;
+
+}
+
+
+.dashboard-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centrer les éléments sur la ligne lorsque moins de trois éléments par ligne */
+  gap: 16px;
+  position: fixed;
+  flex: '0 1 100%'
+   /* Ajouter un espace entre les éléments (ajustez selon vos besoins) */
+}
+
+.dashboard-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centrer les éléments sur la ligne lorsque moins de trois éléments par ligne */
+  gap: 16px;
+  flex: '0 1 100%'
+  /* Ajouter un espace entre les éléments (ajustez selon vos besoins) */
+}
+
+
+.responsive-items {
+  text-align: center;
+  margin: 10px;
+  /* Ajustez la marge selon vos besoins */
+}
+
+/* Ajoutez des styles spécifiques pour les écrans plus petits */
+@media screen and (max-width: 768px) {
+  .responsive-items {
+    width: 100%;
+    max-width: 100%;
+  /* Forcer chaque élément à prendre 100% de la largeur */
+  }
+}
+
+.slds-card {
+  width: 100%; /* La carte occupe 100% de la largeur de la colonne */
+}
+
+/* Vous pouvez également ajouter des styles spécifiques pour différentes tailles d'écrans si nécessaire */
+@media screen and (max-width: 768px) {
+  .slds-card {
+    width: 100%; /* La carte occupe 100% de la largeur de l'écran lorsque la largeur de l'écran est inférieure à 768px */
+  }
+}
+
+
+
+
+
+/* beneficiaire-list.css #238237238
+#231232232*/
+
+
+/* beneficiaire-list.css */
+
+.beneficiaire-list {
+  margin-top: 25px;
+  padding: 0;
+  max-height: auto;
+  overflow-x: auto; /* Ajoute une barre de défilement horizontale si le contenu est trop large */
+  max-width: 100%;
+  width: auto;
+  margin: auto; 
+  position: sticky;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(37, 36, 35, 0.747);
+  background-color: rgb(238,237,338);
+}
+
+/* Styles pour rendre le tableau responsive */
+.beneficiaire-list table {
+  width: 100%; /* Utilisez 100% pour que la table occupe toute la largeur du conteneur */
+  margin-bottom: 70px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  line-height: 20px;
+  overflow-y: auto;
+  position: relative;
+  max-width: 100%; /* Utilisez cette propriété pour éviter le débordement de la largeur de la fenêtre */
+  table-layout: fixed;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px 0 rgba(16, 55, 105, 0.614);
+  border-color: #fff;
+  background-color: #faf9f9;
+}
+
+
+
+.beneficiaire-list th,
+.beneficiaire-list td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  word-wrap: break-word;
+  resize: horizontal;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 7px;
+  box-shadow: 0 8px 16px 0 rgba(50, 28, 12, 0.852);
+  border-color: #8fb5c7;
+  background-color: #fff; /* Aligner le texte horizontalement au centre */
+}
+
+.beneficiaire-list th,
+.beneficiaire-list td {
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 8px 16px 0 rgba(48, 49, 51, 0.847);
+  border-color: #93dde8;
+  
+  
+}
+
+/* Ajoutez un style spécifique pour la colonne du nom du projet */
+.beneficiaire-list td:nth-child(2) {
+  max-width: 200px; /* Définissez une largeur maximale pour la colonne du nom du projet */
+  text-overflow: ellipsis;
+  
+}
+
+/* Styles supplémentaires pour améliorer la lisibilité */
+.beneficiaire-list th,
+.beneficiaire-list td {
+  text-align: center;
+  
+   /* Centre le texte dans les cellules */
+}
+.beneficiaire-list th:not(:first-child),
+.beneficiaire-list td:not(:first-child) {
+  resize: horizontal;
+  
+  
+}
+
+.beneficiaire-list thead {
+  background-color: #a74428; /* Ajoute une couleur de fond à l'en-tête du tableau */
+  color: #fff;
+   /* Couleur du texte pour l'en-tête */
+}
+
+.beneficiaire-list tbody tr:nth-child(even) {
+  background-color: #f8f9fa; 
+  box-shadow: 0 8px 16px 0 rgba(73, 74, 78, 0.847);
+  border-color: #93dde8;
+  /* Ajoute une couleur de fond alternative pour les lignes paires */
+}
+
+.beneficiaire-list tbody tr:hover {
+  background-color: #e2f2e5;
+   /* Change la couleur de fond au survol de la ligne */
+}
+
+
+/* Ajoutez un style spécifique pour la colonne du nom du projet */
+.beneficiaire-list td:nth-child(2) {
+  max-width: 200px; /* Définissez une largeur maximale pour la colonne du nom du projet */
+  text-overflow: ellipsis; 
+  /* Ajoutez une ellipse (...) pour indiquer qu'il y a plus de texte */
+}
+
+/* Styles supplémentaires pour améliorer la lisibilité */
+.beneficiaire-list th,
+.beneficiaire-list td {
+  text-align: center;
+   /* Centre le texte dans les cellules */
+}
+.beneficiaire-list th:not(:first-child),
+.beneficiaire-list td:not(:first-child) {
+  resize: horizontal;
+  
+}
+
+.beneficiaire-list thead {
+  background-color: #a74428; /* Ajoute une couleur de fond à l'en-tête du tableau */
+  color: #fff;
+   /* Couleur du texte pour l'en-tête */
+}
+
+.beneficiaire-list tbody tr:nth-child(even) {
+  background-color: #f8f9fa; 
+  /* Ajoute une couleur de fond alternative pour les lignes paires */
+}
+
+.beneficiaire-list tbody tr:hover {
+  background-color: #e2f2e5; /* Change la couleur de fond au survol de la ligne */
+}
+
+
+
+
 .AddProgram{
 
   display: flex;
@@ -36,17 +550,25 @@
   height: 80px;
   padding: 30px 20px;
   margin: 34px;
-
-
 }
-.EditProgram{
-
+.newreport{
+  margin-top: 1rem;
+ 
 }
-.Layout{
-  
+.listepp{
+  size: 25px;
+  margin-top: 2rem;
+ 
 }
-.Navbar{
-
+.listepptitle{
+  size: 15px;
+  margin-top: -17rem;
+  margin-left: 32rem;
+}
+.titrereport{
+  size: 35px;
+  margin-left: 30px;
+  font-variant: inherit;
 }
 
 
@@ -84,3 +606,354 @@
     transform: rotate(360deg);
   }
 }
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-container {
+  padding: 6px;
+}
+
+.dashboard-items {
+  margin-bottom: 0px;
+}
+
+
+@media screen and(max-width: 630px)  {
+  .dashboard-items{
+    width: 630%;
+  }
+  .dashboard-items{
+    font-size: 1rem;
+  }
+  
+}
+
+.dashboard-item {
+  margin-right: 6px;
+}
+
+
+/*css pour graphe Dashboard qualification pourcentage et sexe pourcentage*/
+.dashboard-chart {
+  display: flex;
+  justify-content: space-between;
+}
+
+.doughnut-chart {
+  width: 237px;
+  position: absolute;
+  margin-top: 45%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  left: 80rem;
+  height: 255px;
+}
+@media screen and(max-width: 1000px) {
+  .doughnut-chart{width: 50%;}
+  
+}
+
+.doughnutchart {
+  width: 237px;
+  position: absolute;
+  top: 124%;
+  left: 65rem;
+  height: 248px;
+  
+}
+
+
+
+/*css pour graphe report qualification pourcentage et sexe pourcentage*/
+
+.doughnut-chartss {
+  width: 237px;
+  position: absolute;
+  margin-top: -40;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  left: 80rem;
+  height: 215px;
+}
+
+
+@media screen and(max-width: 300px) {
+  .doughnut-chartss{
+    width: 100%;
+  }
+  .doughnut-chartss{
+    font-size: 1rem;
+  } 
+}
+
+
+
+.doughnutchartss {
+  width: 237px;
+  position: absolute;
+  top: 15.5rem;
+  left: 65rem;
+}
+
+@media screen and(max-width: 300px) {
+  .doughnutchartss{
+    width: 100%;
+  }
+  .doughnutchartss{
+    font-size: 1rem;
+  }
+  
+}
+
+
+.titrereports {
+  display: inline-block;
+  text-underline-offset: 7px;
+   /* Pour que le texte occupe seulement la largeur nécessaire */
+}
+
+.slideFromRight {
+  animation: slideRightToLeft 10s linear infinite;
+}
+
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+.recentreport{
+  margin-top: 0px;
+}
+
+.listedesrapports{
+  margin-top: -210px;
+  margin-left: -790px;
+  position: relative;
+  text-decoration: underline;
+  text-transform: capitalize;  
+  text-shadow: #a00911;
+  text-overflow: ellipsis;
+  font-size: 6p;
+  font-style: inherit;
+  font-weight: 100;
+}
+.wrapper{
+  margin-top: auto;
+}
+
+
+
+
+.Navleft {
+  display: block;
+  top: 7%;
+  max-width: 100px; /* Valeur initiale pour la largeur maximale */
+  max-height: 100px;
+  width: auto;
+  height: auto;
+}
+
+/* Media query pour ajuster les styles en fonction de la largeur de l'écran */
+@media only screen and (min-width: 768px) {
+  .Navleft {
+    position: initial;
+    max-width: 200px;
+    max-height: 100px; /* Largeur maximale lorsque la largeur de l'écran est d'au moins 768px */
+  }
+}
+.circulaire{
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+
+
+/* Ajoutez ces styles à votre feuille de style ou créez une nouvelle feuille de style */
+
+.dashboard-title {
+  margin-top: 40px;
+  text-align: center;
+  background-color: #44629e;
+  border-radius: 7px;
+  box-shadow: 0 8px 16px 0 rgba(48, 49, 51, 0.653);
+  border-color: #93dde8;
+
+}
+/* styles.css */
+
+
+
+.dashboard-title-heading {
+  color: rgb(157, 52, 243);
+  transition: color 0.3s ease, box-shadow 0.3s ease; /* Animation de transition */
+  cursor: pointer; /* Ajoutez cela pour indiquer que l'élément est interactif */
+}
+
+.dashboard-title-heading:hover {
+  color: rgb(234, 197, 60); /* Couleur au survol */
+  box-shadow: 0 12px 14px rgba(45, 59, 65, 0.734); /* Ombre au survol */
+}
+
+.dashboard-title-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 16px;
+ 
+  
+}
+
+.dashboard-subtitle{
+  font-size: 16px;
+  color: #5c8296d0;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(51, 51, 48, 0.847);
+  border-color: #a77a1a;
+  
+}
+
+.dashboard-subtitle {
+  display: inline-block;
+  text-underline-offset: 7px;
+  border-radius: 4px;
+  box-shadow: 0 2px 16px 0 rgba(55, 51, 51, 0.847);
+  border-color: #fff;
+  font-size: 13px;
+   /* Pour que le texte occupe seulement la largeur nécessaire */
+}
+
+.subtitle {
+  animation: slideRightToLeft 10s linear infinite;
+}
+
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.ellipsis-texts{
+  border-radius: 7px;
+  box-shadow: 0 8px 16px 0 rgba(166, 185, 240, 0.599);
+  border-color: #93dde8;
+}
+
+.bold-title {
+  font-weight: bold;
+  box-shadow: #1362ac;
+  text-align: center;
+  width: 70px;
+  font-size: 1px;
+}
+
+
+.dashboard-title {
+  margin-top: 40px;
+  text-align: center;
+  background-color: #44629e;
+  border-radius: 7px;
+  box-shadow: 0 8px 16px 0 rgba(48, 49, 51, 0.653);
+  border-color: #93dde8;
+
+}
+/* styles.css */
+
+
+.slds-card {
+  color: rgb(44, 52, 116);
+  transition: color 0.3s ease, box-shadow 0.3s ease; /* Animation de transition */
+  cursor: pointer; /* Ajoutez cela pour indiquer que l'élément est interactif */
+}
+
+.slds-card:hover {
+  color: rgb(234, 197, 60); /* Couleur au survol */
+  box-shadow: 0 12px 14px rgba(45, 59, 65, 0.734); /* Ombre au survol */
+}
+
+.slds-card { 
+  font-weight: bold;
+  margin-bottom: -8px;
+  text-align: 20px;
+ 
+  
+}
+
+
+
+.bold-title {
+  color: #354a74;
+  transition: color 0.3s ease, box-shadow 0.3s ease; /* Animation de transition */
+  cursor: pointer; /* Ajoutez cela pour indiquer que l'élément est interactif */
+}
+
+.bold-title:hover {
+  color: rgb(7, 113, 174); /* Couleur au survol */
+  box-shadow: 0 6px 10px rgba(97, 138, 156, 0.734); /* Ombre au survol */
+}
+
+.bold-title {
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 3px;
+  color: #6f6969;
+  text-align: center;
+  
+}
+
+.slds-cards{
+  
+  
+  font-size: 20px;
+}
+.resize{
+  max-width: auto;
+}
+
+.creerun-rapport{
+  background-color: #1dbfce;
+  color: #b81212;
+ 
+  font-family:'Courier New', Courier, monospace;
+  font-weight: bolder;
+  max-width: auto;
+  max-height: auto;
+  transform: matrix(1);
+  margin-top: 20px;
+  text-align: center;
+  margin-left: auto;
+  background-origin: padding-box;
+  padding: auto;
+ 
+  
+  box-shadow: 0 2px 16px 0 rgba(187, 181, 181, 0.847);
+  
+  font-size: 13px;
+}
+
+.creerun-rapport {
+  animation: slideRightToLeft 10s linear infinite;
+}
+
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+
+
+

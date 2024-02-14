@@ -5,7 +5,8 @@ import PetitProjet from '../Projet/PetitProjet';
 
 export default function Presence() {
   const [presences, setPresences] = useState([]);
-  const { beneficiaireId } = useParams();
+  const {beneficiaireId } = useParams();
+  const {presenceId}=useParams();
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -49,11 +50,12 @@ export default function Presence() {
               to={`/App/beneficiaire/${beneficiaireId}/presence/AddPresence`}
               style={{ fontSize: '12px', padding: '3px 5px', color: 'white', marginLeft: "5rem" }}
             >
-              + Nouveau Presence
+              + Nouvelle Presence
             </Link>
             <Link
               className='btn btn-success mx-3'
-              to={`/App/beneficiaire/${beneficiaireId}/payroll`}
+              to={`/App/beneficiaire/${beneficiaireId}/presence/${presenceId}payrolls`}
+
               style={{ fontSize: '12px', padding: '3px 5px', color: 'white', marginLeft: "5rem" }}
             >
               Payroll
@@ -69,8 +71,9 @@ export default function Presence() {
           </div>
         </div>
 
-        <table className="table offset border rounded shadow mt mx-5 beneficiaire-table">
-          <thead className="table-light">
+        <div className="table-responsive">
+        <table className="table table-bordered table-striped ">
+            <thead className="table-success">
             <tr>
               <th scope="col" style={{ position: "sticky", top: "0" }}>Code</th>
               <th scope="col" style={{ position: "sticky", top: "0" }}>Date</th>
@@ -125,6 +128,7 @@ export default function Presence() {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 }

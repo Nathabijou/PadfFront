@@ -2,32 +2,64 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
+
 export default function Beneficiaire() {
   const { programId, composanteId, typeprojetId, petitprojetId, beneficiaireId } = useParams();
 
   const [beneficiaires, setBeneficiaires] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [projectInfo, setProjectInfo] = useState({});
+  const [projectName, setProjectName] = useState('');
 
   useEffect(() => {
     loadBeneficiaires();
-  }, [typeprojetId, petitprojetId]);
+    loadBeneficiairess();
+  }, [petitprojetId]);
+
+  const loadBeneficiairess = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/petitprojet/${petitprojetId}/beneficiaire-with-project`);
+      setBeneficiaires(response.data);
+      setProjectName(response.data.length > 0 ? response.data[0].nomDuProjet : '');  // Mettez à jour avec le nom réel de la propriété
+      setLoading(false);
+    } catch (error) {
+      handleAxiosError(error);
+    }
+  };
+  
+  
 
   const loadBeneficiaires = async () => {
     try {
+      // Récupérer les bénéficiaires avec les détails du projet inclus
       const response = await axios.get(`http://localhost:8080/petitprojet/${petitprojetId}/beneficiaire`);
       setBeneficiaires(response.data);
+  
+      // Vérifier si les détails du projet sont disponibles dans la réponse
+      if ('projectInfo' in response.data) {
+        setProjectInfo(response.data.projectInfo);
+      } else {
+        setProjectInfo({});
+      }
+  
       setLoading(false);
     } catch (error) {
-      if (error.response) {
-        console.error('Erreur de réponse du serveur :', error.response.data);
-      } else if (error.request) {
-        console.error('Aucune réponse du serveur');
-      } else {
-        console.error('Erreur lors de la requête Axios :', error.message);
-      }
-      setLoading(false);
+      handleAxiosError(error);
     }
+  };
+  
+  
+
+  const handleAxiosError = (error) => {
+    if (error.response) {
+      console.error('Erreur de réponse du serveur :', error.response.data);
+    } else if (error.request) {
+      console.error('Aucune réponse du serveur');
+    } else {
+      console.error('Erreur lors de la requête Axios :', error.message);
+    }
+    setLoading(false);
   };
 
   const handleSearch = (term) => {
@@ -35,26 +67,45 @@ export default function Beneficiaire() {
   };
 
   const filteredBeneficiaires = beneficiaires.filter((beneficiaire) =>
-    beneficiaire.nom.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  `${beneficiaire.nom} ${beneficiaire.prenom}`.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+
+  const filterBeneficiaires = (beneficiaire) => {
+    const isMatchingSexe = beneficiaire.sexe.toLowerCase().includes(searchTerm.toLowerCase());
+    const isMatchingQualification = beneficiaire.qualification.toLowerCase().includes(searchTerm.toLowerCase());
+    return isMatchingSexe || isMatchingQualification;
+  };
 
   return (
     <div className="container">
-      <div className="text-center titretext">Bénéficiaires du Projet</div>
-      <div className="py-9 mt-4 mx-4 dx-3 beneficiaire-list">
-        <div className="sticky-buttons d-flex justify-content-between">
+      <div className="titretext">Bénéficiaires du Projet</div>
+
+
+      <div className="project-infos">
+        <div>Nom du Projet: {projectInfo.nom}</div>
+        </div>
+
+
+
+      <div className="py-1 mt-4 mx-1  beneficiaire-list">
+        <div className=" d-flex justify-content-between">
           <Link to={`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${typeprojetId}`}>
-            <svg width="50" height="40" fill="currentColor" className="bi bi-arrow-left" viewBox="3 0 5 16">
+            <svg width="40" height="40" fill="currentColor" className="bi bi-arrow-left" viewBox="3 0 5 16">
               <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
             </svg>
             <Link
-              className='btn btn-success'
+              className='createreports'
               to={`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${petitprojetId}/Beneficiaire/${beneficiaireId}/Addbeneficiaire`}
               style={{ fontSize: '13px', padding: '3px 5px', color: 'white', marginLeft: "30px" }}
             >
               + Nouveau Beneficiaire
             </Link>
           </Link>
+
+
+          
+          
           <div className="search-box">
             <input
               type="text"
@@ -64,17 +115,18 @@ export default function Beneficiaire() {
             />
           </div>
         </div>
-        <table className="table table-striped table-hover">
-          <thead className="table-light">
+        <div className="table-responsive">
+        <table className="table table-bordered table-striped ">
+            <thead className="table-success">
             <tr>
-              <th scope="col" style={{ position: "sticky", top: "0" }}>N°</th>
-              <th scope="col" style= {{ position: "sticky", top: "0" }}>Nom</th>
-              <th scope="col" style ={{ position: "sticky", top: "0" }}>Prénom</th>
-              <th scope="col" style ={{ position: "sticky", top: "0" }}>Qualification</th>
-              <th scope="col" style= {{ position: "sticky", top: "0" }}>Sexe</th>
-              <th scope="col" style= {{ position: "sticky", top: "0" }}>Identification</th>
-              <th scope="col" style= {{ position: "sticky", top: "0" }}>telephone</th>
-              <th scope="col" style= {{ position: "sticky", top: "0" }}>Actions</th>
+              <th scope="col" style= {{ position: "sticky-top",  }}>Numero°</th>
+              <th scope="col" style= {{ position: "sticky-top",  }}>Nom</th>
+              <th scope="col" style ={{ position: "sticky-top",  }}>Prénom</th>
+              <th scope="col" style ={{ position: "sticky-top",  }}>Qualification</th>
+              <th scope="col" style= {{ position: "sticky-top",  }}>Sexe</th>
+              <th scope="col" style= {{ position: "sticky-top",  }}>Identification</th>
+              <th scope="col" style= {{ position: "sticky-top",  }}>telephone</th>
+              <th scope="col" style= {{ position: "sticky-top",  }}>Actions</th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
@@ -129,7 +181,23 @@ export default function Beneficiaire() {
           ))}
         </tbody>
       </table>
+      </div>
+     
+
+
+      
     </div>
+    <div className="project-info">
+  <div className="titres">Total des Bénéficiaires:</div><div className='chifre'> {filteredBeneficiaires.length}</div>
+  <div className="titres">Nombre de Filles:</div><div className='chifre'> {filteredBeneficiaires.filter(b => b.sexe === 'F').length}</div>
+  <div className="titres">Nombre de Garçons:</div><div className='chifre'> {filteredBeneficiaires.filter(b => b.sexe === 'M').length}</div>
+  <div className="titres">Qualifier: </div><div className='chifre'>{filteredBeneficiaires.filter(b => b.qualification === 'Q').length}</div>
+  <div className="titres">Non Qualifier:</div><div className='chifre'> {filteredBeneficiaires.filter(b => b.qualification === 'NQ').length}</div>
+  <div className="titres">Fille Qualifier:</div><div className='chifre'> {filteredBeneficiaires.filter(b => b.sexe === 'F' && b.qualification === 'Q').length}</div>
+  <div className="titres">Fille Non Qualifier:</div><div className='chifre'> {filteredBeneficiaires.filter(b => b.sexe === 'F' && b.qualification === 'NQ').length}</div>
+  <div className="titres">Garçon Qualifier:</div><div className='chifre'> {filteredBeneficiaires.filter(b => b.sexe === 'M' && b.qualification === 'Q').length}</div>
+  <div className="titres">Garçon Non Qualifier:</div><div className='chifre'> {filteredBeneficiaires.filter(b => b.sexe === 'M' && b.qualification === 'NQ').length}</div>
+</div>
   </div>
 );
 }

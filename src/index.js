@@ -8,9 +8,10 @@ import App from './App';
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<Login1 />} /> {/* Page de connexion */}
-      <Route path="/app/*" element={<App />} /> {/* Pages de l'application */}
+      <Route path="/" element={<Login1 />} />
+      <Route path="/app/*" element={<App />} />
     </Routes>
   </Router>,
   document.getElementById('root')
 );
+

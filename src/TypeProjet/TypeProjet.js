@@ -36,13 +36,13 @@ export default function TypeProjet() {
     <div className="container">
       <div className="text-center titretext">Types de Projet</div>
 
-      <div className="py-4 mt-4 mx-4 dx-3 beneficiaire-list">
+      <div className="py-1 mt-4 mx-1  beneficiaire-list">
         <div className="sticky-buttons d-flex justify-content-between">
           <Link to="/App/program/1/composante/2">
           <svg width="50" height="40" fill="currentColor" className="bi bi-arrow-left" viewBox="3 0 5 16">
           <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
           </svg>
-            <Link className='btn btn-success mx-3' to="/App/program/:programId/composante/:composanteId/addtypeProjet" 
+            <Link className='createreports' to="/App/program/:programId/composante/:composanteId/addtypeProjet" 
             style={{ fontSize: '12px', padding: '3px 5 px', color: 'white', marginLeft: "5rem", }}> + Nouveau Type de projet </Link>
           </Link>
           <div className="search-box">
@@ -55,14 +55,15 @@ export default function TypeProjet() {
           </div>
         </div>
 
-        <table className="table offset border rounded shadow mt  mx-5 beneficiaire-table">
-          <thead className="table-light">
+        <div className="table-responsive">
+        <table className="table table-bordered table-striped ">
+            <thead className="table-success">
             <tr>
-              <th scope="col">Code</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Description</th>
-              <th scope="col">Type</th>
-              <th scope="col"></th>
+                <th scope="col" style= {{ position: "sticky-top",  }}>Code</th>
+                <th scope="col" style= {{ position: "sticky-top",  }}>Nom</th>
+                <th scope="col" style= {{ position: "sticky-top",  }}>Description</th>
+                <th scope="col" style= {{ position: "sticky-top",  }}>Type</th>
+                <th scope="col" style= {{ position: "sticky-top",  }}></th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
@@ -116,6 +117,7 @@ export default function TypeProjet() {
             ))}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );

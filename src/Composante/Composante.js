@@ -87,8 +87,9 @@ export default function Composante() {
             />
           </div>
         </div>
-        <table className="table table-bordered table-striped beneficiaire-table">
-          <thead className="table-light">
+        <div className="table-responsive">
+        <table className="table table-bordered table-striped ">
+            <thead className="table-success">
             <tr>
               <th scope="col" style={{ position: 'sticky', top: '0' }}>
                 Code
@@ -151,10 +152,12 @@ export default function Composante() {
         </table>
       </div>
 
-      <table className="table offset border rounded shadow right-table  table-striped">
+      
+      </div>
+      <table className="table  right-table  table-striped ">
         <thead>
           <tr>
-            <th colSpan="2">
+            <th colSpan="5">
              {/* <img src={require('./entete.png')} alt="entete" />*/}
               <h2>Programme Détails</h2>
             </th>

@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { jsxDEV } from 'react/jsx-dev-runtime';
+import { jsx as _jsx } from 'react/jsx-runtime';
+
+
+
 
 export default function AddPetitProjet() {
   const navigate = useNavigate();
@@ -24,6 +29,7 @@ export default function AddPetitProjet() {
     montantMateriaux:'',
     gps1:'',
     gps2:'',
+    quartier: '',
     quartierId:quartierId,
   });
 
@@ -317,11 +323,11 @@ export default function AddPetitProjet() {
                 Ajouter un Qualifier
               </label>
               <select
-                className="form-control"
-                name="quartier"
-                value={quartier}
-                onChange={(e) => onInputChange(e)}
-              >
+  className="form-control"
+  name="quartier"
+  value={quartier}
+  onChange={(e) => onInputChange(e)}
+>
                 <option value="">-- Sélectionner le quartier --</option>
                 {quartiers.map((quartier) => (
                   <option key={quartier.id} value={quartier.id}>

@@ -48,9 +48,9 @@ export default function PetitProjet() {
 
   return (
     <div className="container">
-      <div className="text-center titretext">Liste des Projets</div>
+      <div className="text-center titretext">Liste des Centres de Formation</div>
 
-      <div className="py-1 mt-4 mx-1  beneficiaire-list">
+      <div className="py-9 mt-4 mx-4 dx-3 beneficiaire-list">
         <div className="sticky-buttons d-flex justify-content-between">
           <Link to="/App/program/1/composante/1/typeprojet/1">
             <svg
@@ -98,16 +98,26 @@ export default function PetitProjet() {
           </Link>
         </div>
 
-        <div className="table-responsive">
-        <table className="table table-bordered table-striped ">
-            <thead className="table-success">
+        <table className="table table-striped table-hover">
+          <thead className="table-light">
             <tr>
-            <th scope="col" style= {{ position: "sticky-top",  }}>No </th>
-            <th scope="col" style= {{ position: "sticky-top",  }}>Nom</th>
-            <th scope="col" style= {{ position: "sticky-top",  }}>Status</th>
-            <th scope="col" style= {{ position: "sticky-top",  }}>Quartier </th>
-            <th scope="col" style= {{ position: "sticky-top",  }}>Zone </th>
-            <th scope="col" style= {{ position: "sticky-top",  }}>Actions</th>
+              <th scope="col" style={{ position: 'sticky', top: '0' }}>
+                No
+              </th>
+              <th scope="col" style={{ position: 'sticky', top: '0' }}>
+                Nom
+              </th><th scope="col" style={{ position: 'sticky', top: '0' }}>
+                Status
+              </th>
+              <th scope="col" style={{ position: 'sticky', top: '0' }}>
+                Quartier
+              </th>
+              <th scope="col" style={{ position: 'sticky', top: '0' }}>
+                Zone
+              </th>
+              <th scope="col" style={{ position: 'sticky', top: '0' }}>
+                Actions
+              </th>
               
             </tr>
           </thead>
@@ -162,7 +172,6 @@ export default function PetitProjet() {
           ))}
         </tbody>
       </table>
-    </div>
     </div>
   </div>
 );

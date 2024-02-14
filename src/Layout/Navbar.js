@@ -23,33 +23,9 @@ export default function(){
                       <i className='bi bi-house-fill'></i>
                     </a>   
                </Link> 
-   
-
-   
-    
+ 
     <div className="collapse navbar-collapse " >
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-        
-        <li>
-        <select className="form-select droplist " aria-label="Default select example">
-            <option selected>Zone</option>
-            <option value="1">Zone1</option>
-            <option value="2">Zone2</option>
-            <option value="3">Zone 2 bis</option>
-            <option value="3">Zone3</option>
-            <option value="3">Zone4</option>
-            <option value="3">Zone6</option>
-          </select>
-
-        </li>
-        
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/App/program/1/composante/1">Composante</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/program/1/projectcomponent/1">Gestion-de-Stock</a>
-        </li>
-
         
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" href="https://docs.google.com/spreadsheets/d/1YJ0xW0mNbZdZ_9HXgN4V_qEQzTBl9Y_U_s51PGx6mkI/edit#gid=197995468"> Suivi-des-Jalons</a>
@@ -60,9 +36,8 @@ export default function(){
     </div>
 
     <form className="d-flex">
-        <input className="form-control me-1 droplist2" type="search" placeholder="Search" />
-       
-      </form>
+        <input className="form-control me-1 droplist2" type="search" placeholder="Search" /> 
+    </form>
 
     <ul className="navbar-nav me-auto mb-1 mb-lg-0 ">
           <li className="nav-item">
@@ -70,12 +45,7 @@ export default function(){
                 
           </li>
     </ul>
-
-    
-
-
-   
-                  
+             
     <span className='text-2x1 font-semibold cursor-pointer' onClick={() => setOpenProfiles((prev)=>!prev)}>
       
     <ul className="navbar-nav me-auto mb-1 mb-lg-0">
@@ -84,20 +54,12 @@ export default function(){
     </div>     
     </ul>
 
-      
-       
    </span>
-   
-
     {
       openProfles && <DropdownProfiles/>
     }
     
-    
-    
 
-
-    
     </div>
   </nav>
 </div>

@@ -24,7 +24,7 @@ export default function AddProgram() {
     e.preventDefault();
     try {
       await axios.post('http://localhost:8080/program', programs);
-      navigate('/App'); // Rediriger vers la liste des programmes après l'ajout
+      navigate('/App'); 
     } catch (error) {
       console.error('Erreur lors de l\'ajout du programme :', error);
     }
@@ -32,12 +32,8 @@ export default function AddProgram() {
 
   return (
     <div className="Container">
-
-
-      <div className='hero'>
-
-        
-      </div>
+      <div className='hero'>       
+       </div>
 
       <div className="row p-4 mt-4 mx-3">
         <div className="offset border rounded p-5 pt-4 m-5 shadow">
