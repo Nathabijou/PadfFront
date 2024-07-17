@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'; // Ajout de useParams pour récupérer le programId
+import { useBaseUrl } from '../BaseUrl';
 
 export default function AddComposante() {
+  const baseUrl= useBaseUrl();
   const navigate = useNavigate();
   const { programId } = useParams(); // Récupération du programId depuis la route
 
@@ -29,7 +31,7 @@ export default function AddComposante() {
         programId: programId,
       };
 
-      const response = await axios.post(`http://localhost:8080/composante/program/${programId}`, composanteData);
+      const response = await axios.post(`${baseUrl}/composante/program/${programId}`, composanteData);
     navigate(`/App/program/1/composante/1`);
   } catch (error) {
     console.log(error);

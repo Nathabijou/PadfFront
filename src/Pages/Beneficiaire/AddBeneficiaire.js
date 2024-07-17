@@ -1,11 +1,13 @@
   import axios from 'axios';
   import React, { useState } from 'react'
   import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useBaseUrl } from '../../BaseUrl';
 
   export default function AddBeneficiaire() {
 
     const {typeprojetId, petitProjetId} = useParams();
       let navigate=useNavigate( )
+      const baseUrl = useBaseUrl(); 
 
       const [beneficiaire, setBeneficiaire]=useState({
           nom:"",
@@ -37,7 +39,7 @@
       const onSubmit=async(e)=>{
 
           e.preventDefault();
-          await axios.post("http://localhost:8080/beneficiaire", beneficiaire)
+          await axios.post(`${baseUrl}/beneficiaire`, beneficiaire)
 
           navigate("/")
       }

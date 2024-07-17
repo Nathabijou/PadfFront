@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useBaseUrl } from '../BaseUrl';
 
 export default function ViewProgram() {
   const { id } = useParams();
-  const [program, setProgram] = useState({
+  const baseUrl= useBaseUrl();
+  const [programs, setProgram] = useState({
     code: '',
     nom: '',
     description: '',
@@ -19,7 +21,8 @@ export default function ViewProgram() {
 
     const loadProgram = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/program/${id}`, program);
+        
+        const response = await axios.get(`${baseUrl}/programs/${id}`, programs);
 
         if (isMounted) {
           const programData = response.data;
@@ -39,7 +42,7 @@ export default function ViewProgram() {
     };
   }, [id]);
 
-  console.log('Program State:', program);
+  console.log('Program State:', programs);
 
   return (
     <div className="container">
@@ -54,28 +57,28 @@ export default function ViewProgram() {
         <div className="offset border rounded shadow views-table">
           <div className="card">
             <div className="card-header">
-              Détails du programme
+              Détails du programme :  {programs.id}
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
-                  <b>Code :</b> {program.code}
+                  <b>Code :</b> {programs.code}
                 </li>
                 <li className="list-group-item">
-                  <b>Nom :</b> {program.nom}
+                  <b>Nom :</b> {programs.nom}
                 </li>
                 <li className="list-group-item">
-                  <b>Déscription :</b> {program.description}
+                  <b>Déscription :</b> {programs.description}
                 </li>
                 <li className="list-group-item">
-                  <b>Bailleur :</b> {program.bailleur}
+                  <b>Bailleur :</b> {programs.bailleur}
                 </li>
                 <li className="list-group-item">
-                  <b>M.O :</b> {program.mo}
+                  <b>M.O :</b> {programs.mo}
                 </li>
                 <li className="list-group-item">
-                  <b>MDOD :</b> {program.mdod}
+                  <b>MDOD :</b> {programs.mdod}
                 </li>
                 <li className="list-group-item">
-                  <b>Partenaire :</b> {program.partenaire}
+                  <b>Partenaire :</b> {programs.partenaire}
                 </li>
               </ul>
             </div>

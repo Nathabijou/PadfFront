@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 export default function ViewPettitProjet() {
-
+    const { programId, composanteId, typeprojetId, petitprojetId } = useParams();
     const [petitprojet, setPetitProjet]=useState({
         name:"",
         description:"",
@@ -98,7 +98,7 @@ export default function ViewPettitProjet() {
                 </ul>
             </div>
         </div>
-        <Link className="btn btn-primary my-2" to={"/petitprojet"}>Back</Link>
+        <Link className="btn btn-primary my-2" to={`/App/program/1/composante/1/typeprojet/6/petitprojet/6`}>Back</Link>
         </div>
         </div>
         </div>

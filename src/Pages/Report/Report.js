@@ -9,6 +9,7 @@ import { Row, Col } from 'antd';
 import { ResponsiveContainer } from 'recharts';
 import { auto } from '@popperjs/core';
 import { Link } from 'react-router-dom';
+import { useBaseUrl } from '../../BaseUrl';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, DoughnutController, ArcElement);
 ChartJS.register(DoughnutController, ArcElement);
@@ -42,6 +43,7 @@ function ParentComponent() {
 // ... (votre importations existantes)
 
 const RecentRepport = ({ onClickReport }) => {
+  const baseUrl= useBaseUrl();
   const [dataSource, setDatasource] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +51,7 @@ const RecentRepport = ({ onClickReport }) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getRecentReport();
+        const res = await getBeneficiaire();
         console.log('Données du rapport récent :', res);
         setDatasource(res.slice());
       } catch (error) {
@@ -238,6 +240,7 @@ function DashboardChart({ beneficiaires }) {
 
   
   function Dashboardpp() {
+    const baseUrl= useBaseUrl();
     const [beneficiaires, setBeneficiaires] = useState([]);
     const [nombreDeFilles, setNombreDeFilles] = useState(0); // Ajoutez l'état pour le nombre de filles
     const [nombreDeGarcons, setNombreDeGarcons] = useState(0); // Ajoutez l'état pour le nombre de garçons
@@ -262,32 +265,32 @@ function DashboardChart({ beneficiaires }) {
         try {
           if (selectedReportId) {
             // Total des bénéficiaires
-            const responseBeneficiaires = await fetch(`http://localhost:8080/report/${selectedReportId}/beneficiaires`);
+            const responseBeneficiaires = await fetch(`${baseUrl}/report/${selectedReportId}/beneficiaires`);
             const dataBeneficiaires = await responseBeneficiaires.json();
             setBeneficiaires(dataBeneficiaires);
     
             // Filles
-            const responseFilles = await fetch(`http://localhost:8080/report/${selectedReportId}/beneficiaires?sexe=F`);
+            const responseFilles = await fetch(`${baseUrl}/report/${selectedReportId}/beneficiaires?sexe=F`);
             const dataFilles = await responseFilles.json();
             setNombreDeFilles(dataFilles);
     
             // Garçons
-            const responseGarcons = await fetch(`http://localhost:8080/report/${selectedReportId}/beneficiaires?sexe=M`);
+            const responseGarcons = await fetch(`${baseUrl}/report/${selectedReportId}/beneficiaires?sexe=M`);
             const dataGarcons = await responseGarcons.json();
             setNombreDeGarcons(dataGarcons);
     
             // Petit projet
-            const responsePetitProjet = await fetch(`http://localhost:8080/report/${selectedReportId}/petitprojet`);
+            const responsePetitProjet = await fetch(`${baseUrl}/report/${selectedReportId}/petitprojet`);
             const dataPetitProjet = await responsePetitProjet.json();
             setNombreDePetitProjet(dataPetitProjet);
     
             // Centre de formation
-            const responseCentreFormation = await fetch(`http://localhost:8080/report/${selectedReportId}/centreformation`);
+            const responseCentreFormation = await fetch(`${baseUrl}/report/${selectedReportId}/centreformation`);
             const dataCentreFormation = await responseCentreFormation.json();
             setNombreDeCentreFormation(dataCentreFormation);
     
             // Zone
-            const responseZones = await fetch(`http://localhost:8080/report/${selectedReportId}/zones`);
+            const responseZones = await fetch(`${baseUrl}/report/${selectedReportId}/zones`);
             const dataZones = await responseZones.json();
             setNombreDeZones(dataZones);
     

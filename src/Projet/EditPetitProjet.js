@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useBaseUrl } from '../BaseUrl';
 
 export default function EditPetitProjet() {
     let navigate=useNavigate( );
 
     const {id}=useParams()
+    const baseUrl = useBaseUrl();
 
     const [petitprojet, setPetitProjet]=useState({
         name:"",
@@ -40,13 +42,13 @@ export default function EditPetitProjet() {
     const onSubmit=async(e)=>{
 
         e.preventDefault();
-        await axios.put(`http://localhost:8080/petitprojet/${id}`, petitprojet)
+        await axios.put(`${baseUrl}/petitprojet/${id}`, petitprojet)
 
         navigate("/")
     };
 
     const loadPetitProjet= async()=>{
-        const result=await axios.get(`http://localhost:8080/petitprojet/${id}`)
+        const result=await axios.get(`${baseUrl}/petitprojet/${id}`)
         setPetitProjet(result.data)
     }
 

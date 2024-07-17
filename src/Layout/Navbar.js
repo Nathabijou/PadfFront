@@ -18,30 +18,33 @@ export default function(){
 <nav className="navbar navbar-expand navbar-dark pt navcol">
   <div className="container-fluid">
       <AppHeader/>
+      
                 <Link className="navbar-brand" to="/App" > 
-                    <a href="#" className="nav-link text-white fs-5 mx-2" aria-current="page">
+                    <a href="#" className="nav-link text-white fs-5 mx-4" aria-current="page">
                       <i className='bi bi-house-fill'></i>
                     </a>   
                </Link> 
- 
+ {/**
     <div className="collapse navbar-collapse " >
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
         
+      
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" href="https://docs.google.com/spreadsheets/d/1YJ0xW0mNbZdZ_9HXgN4V_qEQzTBl9Y_U_s51PGx6mkI/edit#gid=197995468"> Suivi-des-Jalons</a>
         </li>
-
+         
            
       </ul>  
     </div>
-
+ */}
     <form className="d-flex">
-        <input className="form-control me-1 droplist2" type="search" placeholder="Search" /> 
+        <input className="form-control me-1 " type="search" placeholder="Search" /> 
     </form>
 
+   {/* 
     <ul className="navbar-nav me-auto mb-1 mb-lg-0 ">
           <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="https://www.algoleaders.com/">Contact</a>
+                <a className="nav-link active" aria-current="page" href="/App/Apropos">Àpropos</a>
                 
           </li>
     </ul>
@@ -49,12 +52,13 @@ export default function(){
     <span className='text-2x1 font-semibold cursor-pointer' onClick={() => setOpenProfiles((prev)=>!prev)}>
       
     <ul className="navbar-nav me-auto mb-1 mb-lg-0">
-    <div className='flex flex-col boutmap'>
-          <i className='bi bi-gear'></i>           
-    </div>     
+        
     </ul>
 
    </span>
+  */}
+
+<i class="bi bi-gear"></i>
     {
       openProfles && <DropdownProfiles/>
     }

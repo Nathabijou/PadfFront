@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useBaseUrl } from '../../BaseUrl';
 
 export default function ViewPettitProjet() {
+    const baseUrl= useBaseUrl();
 
     const [petitprojet, setPetitProjet]=useState({
         name:"",
@@ -28,7 +30,7 @@ export default function ViewPettitProjet() {
     },[])
 
     const loadPetitProjet=async ()=>{
-        const result=await axios.get(`http://localhost:8080/beneficiaire/${id}`)
+        const result=await axios.get(`${baseUrl}/beneficiaire/${id}`)
         setPetitProjet(result.data)
     }
 

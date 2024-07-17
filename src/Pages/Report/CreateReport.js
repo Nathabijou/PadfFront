@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Select, Button, Checkbox, Input, DatePicker } from 'antd';
 import axios from 'axios';
+import { useBaseUrl } from '../../BaseUrl';
 
 const { Option } = Select;
 
 const CreateReport = () => {
   const navigate = useNavigate();
+  const baseUrl = useBaseUrl();
 
    // Déclaration des états
    const [zones, setZones] = useState([]);
@@ -24,13 +26,13 @@ const CreateReport = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const zonesResponse = await axios.get('http://localhost:8080/zone');
+        const zonesResponse = await axios.get(`${baseUrl}/zone`);
         setZones(zonesResponse.data);
 
-        const composantesResponse = await axios.get('http://localhost:8080/composante');
+        const composantesResponse = await axios.get(`${baseUrl}/composante`);
         setComposantes(composantesResponse.data);
 
-        const petitsProjetsResponse = await axios.get('http://localhost:8080/petitprojet');
+        const petitsProjetsResponse = await axios.get(`${baseUrl}/petitprojet`);
         if (Array.isArray(petitsProjetsResponse.data)) {
           setPetitsProjets(petitsProjetsResponse.data);
         } else {
@@ -82,7 +84,7 @@ const CreateReport = () => {
 
       console.log('Données du rapport prêtes');
 
-      const response = await axios.post(`http://localhost:8080/report/create/${zoneId || 'all'}/${composanteId || 'all'}/${petitprojetId || 'all'}`,
+      const response = await axios.post(`${baseUrl}/report/create/${zoneId || 'all'}/${composanteId || 'all'}/${petitprojetId || 'all'}`,
         reportData
       );
 

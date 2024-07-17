@@ -78,24 +78,25 @@ body {
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.95); /* Fond blanc semi-transparent */
     border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Légère ombre */
+    box-shadow: 2px 2px 10px 3px rgba(7, 7, 7, 0.2); /* Légère ombre */
     text-align: center;
 }
 
 /* Logo styles */
 .logo img {
-    width: 230px;
+    width: 200px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Title styles */
-.wrapper .name {
-    font-weight: 600;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #333;
-}
+.names {
+    font-family: 'Helvetica Neue', sans-serif !important;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Couleur du texte */
+    text-align: center;
+  }
 
 /* Form field styles */
 .wrapper .form-field {
@@ -112,27 +113,9 @@ body {
 }
 
 /* Button styles */
-.wrapper .btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #16a085; /* Couleur de bouton plus foncée */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
 
-.wrapper .btn:hover {
-    background-color: #717675; /* Couleur de bouton au survol */
-}
 
-/* Link styles */
-.wrapper a {
-    text-decoration: none;
-    color: #647270; /* Couleur de lien plus foncée */
-}
+
 
 .wrapper a:hover {
     text-decoration: underline;

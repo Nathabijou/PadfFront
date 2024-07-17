@@ -8,6 +8,7 @@ import { getBeneficiaire, getBeneficiaireAge, getRecentProject } from '../../Lay
 import { Row, Col } from 'antd';
 import { ResponsiveContainer } from 'recharts';
 import { auto } from '@popperjs/core';
+import { useBaseUrl } from '../../BaseUrl';
 
 function DashboardppItem({ title, value, icon }) {
   return (
@@ -25,6 +26,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,
 ChartJS.register(DoughnutController, ArcElement);
 
 function RecentProject() {
+  
   const [dataSource, setDatasource] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +34,7 @@ function RecentProject() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getRecentProject();
+        const res = await getBeneficiaire();
         setDatasource(res.slice());
       } catch (error) {
         console.error('Erreur lors de la récupération des données du serveur', error);
@@ -218,7 +220,22 @@ function qualificatier(beneficiaires) {
 function nonqualificatier(beneficiaires) {
   return beneficiaires.filter((b) => b.qualification === 'NQ').length;
 }
+function filleQualifier(beneficiaire){
+  return beneficiaire.filter(b=> b.sexe ==='F' && b.qualification==='Q').length;
+}
+function filleNonQualifier(beneficiaire){
+  return beneficiaire.filter(b=> b.sexe ==='F' && b.qualification==='NQ').length;
+}
+function garconsQualifier(beneficiaire){
+  return beneficiaire.filter(b=> b.sexe ==='M' && b.qualification==='Q').length;
+}
 
+function garconsNonQualifier(beneficiaire){
+  return beneficiaire.filter(b=> b.sexe ==='F' && b.qualification==='NQ').length;
+}
+
+
+{/** */}
 function DashboardChart({ beneficiaires }) {
   const [ageData, setAgeData] = useState({
     labels: [],
@@ -252,34 +269,16 @@ function DashboardChart({ beneficiaires }) {
     fetchData();
   }, []);
 
-  function VotreComponent() {
-    const [payrolls, setPayrolls] = useState([]);
-    useEffect(() => {
-      const fetchPayrolls = async () => {
-        try {
-          const response = await axios.get('http://localhost:8080/payrolls');
-          setPayrolls(response.data);
-          console.log('Payrolls', response.data);
-        } catch (error) {
-          console.error('Erreur lors de la récupération des données du serveur', error);
-        }
-      };
-  
-      fetchPayrolls();
-    }, []);
-    return (
-      <div>
-        {payrolls.map((payrolls) => (
-          <div key={payrolls.id}>{/* Affichez les détails de chaque payroll ici */}</div>
-        ))}
-      </div>
-    );
-  }
+
 
 
 function getCombinedData(beneficiaires, peyroll) {
     const filles = calculateFilles(beneficiaires);
     const garcons = calculateGarcons(beneficiaires);
+    //const filleQualifier= filleQualifier(beneficiaires);
+    //const filleQualifier= filleNonQualifier(beneficiaires);
+    //const garconQualifier= garconQualifier(beneficiaires);
+    //const garconNonQualifier= garconNonQualifier(beneficiaires);
     const totalSexe = filles + garcons;
   
     const qualifie = beneficiaires.filter((b) => b.qualification === 'Q').length;
@@ -339,24 +338,26 @@ const options = {
 };
 
   return (
-    <ResponsiveContainer width="700px" height={670}>    
+    <ResponsiveContainer width="700px" height={670}>
+      
        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
         <Card className="slds-card" style={{ width: '800px', maxWidth: '100%', height: '340px',  bordered:'100px', top:'6px' }}>
             <Bar options={options} data={ageData} />
         </Card>
-  
+</div>  
       <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
       <Card className="slds-card" style={{ width: '700px', top:'0px', maxWidth: 'auto', height: '340px',  marginLeft:'0px', position: 'relative' }}>
         <Pie data={getCombinedData(beneficiaires)} style={{ width: 'auto', height: '80%', maxWidth: 'auto', maxHeight: '300px' }} />                 
       </Card> 
       </Col>    
-      </div>
+      
     </ResponsiveContainer>
   );
   }
  
 
   function Dashboardpp() {
+    const baseUrl = useBaseUrl();
     const [beneficiaires, setBeneficiaires] = useState([]);
     const [payrolls, setPayrolls] = useState([]);
     const [petitProjetData, setPetitProjetData] = useState([]);
@@ -371,24 +372,24 @@ const options = {
       const fetchData = async () => {
         try {
           // Récupérer les données de la zone
-          const responseZone = await fetch('http://localhost:8080/zone');
+          const responseZone = await fetch(`${baseUrl}/zone`);
           const dataZone = await responseZone.json();
           console.log('zone:', dataZone);
           setZone(dataZone);
   
           // Récupérer les données des bénéficiaires
-          const responseBeneficiaires = await fetch('http://localhost:8080/beneficiaire');
+          const responseBeneficiaires = await fetch(`${baseUrl}/beneficiaire`);
           const dataBeneficiaires = await responseBeneficiaires.json();
           console.log('Beneficiaires:', dataBeneficiaires);
           setBeneficiaires(dataBeneficiaires);
   
-          const responsePetitProjet = await fetch('http://localhost:8080/petitprojet');
+          const responsePetitProjet = await fetch(`${baseUrl}/petitprojet`);
           const dataPetitProjet = await responsePetitProjet.json();
           console.log('petitprojets:', dataPetitProjet);
           setPetitProjetData(dataPetitProjet);
   
           // Filtrer les petits projets par type 'Infrastructure'
-          const responseProjectsCountByType = await fetch('http://localhost:8080/petitprojet/count-by-type');
+          const responseProjectsCountByType = await fetch(`${baseUrl}/petitprojet/count-by-type`);
           const dataProjectsCountByType = await responseProjectsCountByType.json();
           console.log('Projects Count By Type:', dataProjectsCountByType);
           setProjectsCountByType(dataProjectsCountByType);
@@ -418,7 +419,7 @@ const options = {
    useEffect(() => {
     const fetchData = async () => {
       try { 
-        const responseZoneBeneficiaryCounts = await fetch('http://localhost:8080/zoneBeneficiaryCounts');
+        const responseZoneBeneficiaryCounts = await fetch(`${baseUrl}/zoneBeneficiaryCounts`);
         const dataZoneBeneficiaryCounts = await responseZoneBeneficiaryCounts.json();
         console.log('Comptages de bénéficiaires par zone:', dataZoneBeneficiaryCounts);
         setZoneBeneficiaryCounts(dataZoneBeneficiaryCounts);
@@ -433,7 +434,7 @@ const options = {
   useEffect(() => {
     const fetchPayrolls = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/payrolls');
+        const response = await axios.get(`${baseUrl}/payrolls`);
         setPayrolls(response.data);
         console.log('Payrolls', response.data);
       } catch (error) {
@@ -454,73 +455,73 @@ const options = {
         </Typography.Title>
 
         
-          <Row gutter={[16, 16]} justify="center">
-            <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
-            <Card className='slds-card'>
-            <DashboardppItem
-              icon={<UserOutlined className="slds-card" style={{ color: '#151402', backgroundColor: '#F4F706 ', borderRadius: 20,  fontSize: 25, padding: 10 }} />}
-              title={<span className="bold-title">Total Beneficiaires</span>}
-              value={beneficiaires.length}
-              className="responsive-items"
-             />
-            </Card>
-          </Col>
+        <Row gutter={[16, 16]} justify="center">
+                <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+                <Card className=''>
+                    <DashboardppItem
+                      icon={<UserOutlined className="" style={{ color: '#151402',fontFamily:' Verdana, Geneva, Tahoma, sans-serif !important', backgroundColor: '#F4F706 ', borderRadius: 20,  fontSize: 25, padding: '8px' }} />}
+                      title={<span className="bold-title">Total Beneficiaires</span>}
+                      value={beneficiaires.length}
+                      className="responsive-items"
+                    />
+                  </Card>
+                </Col>
 
-          <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
-           <Card className='slds-card'>
-              <DashboardppItem
-                icon={<UserOutlined className="slds-card" style={{ color: '#151402', backgroundColor: '#E83F7F', borderRadius: 20, fontSize: 25, padding: 10 }} />}
-                title={<span className="bold-title">Filles</span>}
-                value={calculateFilles(beneficiaires)}
-                className="responsive-items"
-              />
-           </Card>
-          </Col>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+              <Card className=''>
+                  <DashboardppItem
+                    icon={<UserOutlined className="" style={{ color: '#151402', backgroundColor: '#E83F7F', borderRadius: 20, fontSize: 25, padding: '8px' }} />}
+                    title={<span className="bold-title">Filles</span>}
+                    value={calculateFilles(beneficiaires)}
+                    className="responsive-items"
+                  />
+                </Card>
+              </Col>
 
-          <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
-          <Card className='slds-card'>
-              <DashboardppItem
-                icon={<UserOutlined className="slds-card" style={{ color: '#151402', backgroundColor: '#4CA5EF', borderRadius: 20, fontSize: 25, padding: 10 }} />}
-                title={<span className="bold-title">Garcons</span>}
-                value={calculateGarcons(beneficiaires)}
-                className="responsive-items"
-              />
-             </Card>
-          </Col>
-          
-          <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
-            <Card className='slds-card'>
-              <DashboardppItem
-                icon={<ProjectOutlined className="slds-card" style={{ color: '#151402', backgroundColor: '#ED840D', borderRadius: 20, fontSize: 25, padding: 10 }} />}
-                title={<span className="bold-title">Petit-Projets</span>}
-                value={projectsCountByType['Infrastructure'] || 0} // Utilisez la clé correcte pour le type de projet
-                className="responsive-items"
-              />
-            </Card>
-          </Col>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+              <Card className=''>
+                  <DashboardppItem
+                    icon={<UserOutlined className="" style={{ color: '#151402', backgroundColor: '#4CA5EF', borderRadius: 20, fontSize: 25, padding: '8px' }} />}
+                    title={<span className="bold-title">Garcons</span>}
+                    value={calculateGarcons(beneficiaires)}
+                    className="responsive-items"
+                  />
+                </Card>
+              </Col>
 
-          <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
-              <Card className='slds-card'>
-                <DashboardppItem
-                  icon={<ProjectOutlined className="slds-card" style={{ color: '#151402', backgroundColor: '#0F9C7B', borderRadius: 20, fontSize: 25, padding: 10 }} />}
-                  title={<span className="bold-title">Centre-Formation</span>}
-                  value={projectsCountByType['Formation Professionnelle'] || 0}
-                  className="responsive-items"
-                />
-              </Card>
-            </Col>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+              <Card className=''>
+                  <DashboardppItem
+                    icon={<ProjectOutlined className="" style={{ color: '#151402', backgroundColor: '#ED840D', borderRadius: 20, fontSize: 25, padding: '8px' }} />}
+                    title={<span className="bold-title">Petit-Projets</span>}
+                    value={projectsCountByType['Infrastructure'] || 0}
+                    className="responsive-items"
+                  />
+                </Card>
+              </Col>
 
-            <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
-              <Card className='slds-card'>
-                <DashboardppItem
-                  icon={<ProjectOutlined className="slds-card" style={{ color: '#151402', backgroundColor: '#ED250D', borderRadius: 20, fontSize: 25, padding: 10, position: 'relative', flexDirection: 'column' }} />}
-                  title={<span className="bold-title">Zone d'interv </span>}
-                  value={zone.length}
-                  className="responsive-items"
-                />
-              </Card>
-            </Col>
-        </Row>
+              <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+              <Card className=''>
+                  <DashboardppItem
+                    icon={<ProjectOutlined className="" style={{ color: '#151402', backgroundColor: '#0F9C7B', borderRadius: 20, fontSize: 25, padding: '8px' }} />}
+                    title={<span className="bold-title">Centre-Formation</span>}
+                    value={projectsCountByType['Formation Professionnelle'] || 0}
+                    className="responsive-items"
+                  />
+                </Card>
+              </Col>
+
+              <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
+                <Card className=''>
+                  <DashboardppItem
+                    icon={<ProjectOutlined className="" style={{ color: '#151402', backgroundColor: '#ED250D', borderRadius: 20, fontSize: 25, padding: '8px' }} />}
+                    title={<span className="bold-title">Zone d'interv</span>}
+                    value={zone.length}
+                    className="responsive-items"
+                  />
+                </Card>
+              </Col>
+            </Row>
 
           <Space style={{ width: '100%', justifyContent: 'center' }}>
             <RecentBeneficiaire style={{ flex: '0 1 100%' }} />

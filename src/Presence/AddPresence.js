@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useBaseUrl } from '../BaseUrl';
 
 export default function AddPresence() {
   const { beneficiaireId, composanteId, programId } = useParams();
  
 
   const navigate = useNavigate();
+  const baseUrl = useBaseUrl();
 
   const initialPresence = {
     date: '',
@@ -27,7 +29,7 @@ export default function AddPresence() {
     e.preventDefault();
 
     try {
-      await axios.post(`http://localhost:8080/beneficiaire/${beneficiaireId}/presence`,  addpresence);
+      await axios.post(`${baseUrl}/beneficiaire/${beneficiaireId}/presence`,  addpresence);
       navigate('/'); // Redirection après l'ajout
     } catch (error) {
       console.error("Une erreur s'est produite :", error);

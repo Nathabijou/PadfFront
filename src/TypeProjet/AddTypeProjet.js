@@ -2,10 +2,12 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom'; // Ajout de useParams pour récupérer le programId
+import { useBaseUrl } from '../BaseUrl';
 
 
 export default function AddTypeProjet() {
   const navigate = useNavigate();
+  const baseUrl = useBaseUrl();
   const { composanteId, programId } = useParams();
 
   const [typeProjet, setTypeProjet] = useState({
@@ -33,7 +35,7 @@ export default function AddTypeProjet() {
         composanteId: composanteId,
       };
 
-      const response = await axios.post(`http://localhost:8080/typeprojet/composante/${composanteId}`, typeProjetData);
+      const response = await axios.post(`${baseUrl}/typeprojet/composante/${composanteId}`, typeProjetData);
       console.log("Réponse de l'API :", response.data); // Ajout d'une console.log pour le débogage
 
       // Redirection après la soumission réussie du formulaire

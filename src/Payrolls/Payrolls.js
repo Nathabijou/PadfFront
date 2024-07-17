@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useBaseUrl } from '../BaseUrl';
 
 export default function Payrolls() {
+  const baseUrl = useBaseUrl();
   const [payrolls, setPayrolls] = useState([]);
   const { beneficiaireId, projetBeneficiaireId } = useParams();
 
@@ -15,7 +17,7 @@ export default function Payrolls() {
 
   const loadPayrolls = async () => {
     try {
-        const response = await axios.get(`http://localhost:8080/payrolls`);
+        const response = await axios.get(`${baseUrl}/payrolls`);
         console.log("Response from backend:", response.data);
         setPayrolls(response.data);
         setLoading(false);

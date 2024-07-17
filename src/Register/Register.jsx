@@ -11,9 +11,11 @@ import { Space, Typography } from 'antd';
 
 import { useState } from 'react';
 import axios from 'axios';
+import { useBaseUrl } from '../BaseUrl';
 
 
 function Register() {
+    const baseUrl = useBaseUrl(); 
 
     const [username , setUsername] =useState("");
 
@@ -25,7 +27,7 @@ function Register() {
         event.preventDefault();
 
         try{
-            await axios.post("http://localhost:8080/api/v1/user/save", {
+            await axios.post(`${baseUrl}/api/v1/user/save`, {
                 username: username, email: email, password:password,
             });
             alert("User  Registration successfully");

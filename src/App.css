@@ -34,46 +34,13 @@ body {
 }
 /* Styles supplémentaires pour la lisibilité sur des petits écrans */
 
-.table-responsive {
-  overflow-x: 100px;
-}
-
-.table {
-  width: 100%;
-}
-
-
-
-@media (max-width: 576px) {
-  .table {
-    font-size: 12px;  /* Ajustez la taille de la police ou d'autres styles pour les petits écrans */
-  }
-}
-
-
-@media (max-width: 576px) {
-  .table .hide-on-small-screen {
-    display: none;
-  }
-}
-@media (max-width: 576px) {
-  .table td, .table th {
-    font-size: 14px;  /* Ajustez la taille de la police pour les petits écrans */
-  }
-}
-.graph-section {
-  overflow-y: auto; /* Ajoute une barre de défilement vertical si le contenu est trop long */
-  max-height: 500px; /* Ajustez la hauteur maximale selon vos besoins */
-}
-
-
-
 
 
 .AppHeader{
- height: 50px;
+ height: 10px;
  max-width: 100%;
  display: flex;
+ margin-left: 20px;
  justify-content: space-between;
  align-items: center;
  padding:30px 15px;
@@ -104,19 +71,7 @@ body {
 }
 
 /* T Liste des beneficiaire*/
-.independent-chart {
-  position: absolute;
-  width: 430px;
-  height: 100px;
-  max-width: 100%;
-  left: 30%;
-  top: -44.5%;
-  max-height: 100px;
-  margin-top: 59.4%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  /* Ajustez la valeur de right selon vos besoins */
-}
+
 .inetrface {
   overflow: auto;
   height: 100vh; /* Set a maximum height for the page */
@@ -130,33 +85,6 @@ body {
 }
 /* RecentBeneficiaire.css */
 
-@media (max-width: 576px) {
-  .responsive-table {
-    width: 270px;
-    max-height: 2400px;
-    overflow-y: auto;
-    height: 400px;
-    top: 500%;
-    margin-top: 200%;
-    max-height: auto;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .chart-card {
-    width: 100%;
-    top: 100px;
-  }
-}
-
-/*nbre de beneficiaire*/
-
-.bar-chart-containers {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .createreport {
   color: #fff;
@@ -190,82 +118,294 @@ body {
   }
 }
 
-.createreportts {
-  color: #f8f8f8;
-  background-color: #0673e8f9;
-  background-position:  3;
-  border-radius: 10px;
-  font-size: medium;
-  padding: 10px 0px;
-  left: auto;
-  box-shadow: 10 10 10px rgb(232, 7, 7);
-  transition: background-color 0.6s ease, transform 0.3s ease; /* Ajout de transitions pour une animation en douceur */
-  animation: pulse 1.5s infinite; /* Ajout d'une animation pulsée initiale */
-}
-/* ProjectInfo.css */
+
+/* ProjectInfo.css pour Windows*/
 
 .project-info {
-  background-color: #3c5f94f8;
+  background-color: #3c6b70f8;
   color: white;
   padding: 20px;
   border-radius: 5px;
-  position: absolute;
-  top: 100px;
-  right: 10px;
-  box-sizing: border-box;
-  width: auto; /* Utilisation de width: auto; pour une largeur flexible */
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
   max-width: auto;
-  display: flex;
-  flex-direction: column;
-  font-weight: 100px;
-  max-block-size: none;
-  
+  height: auto;
+  font-size: 15px;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: repeat(6, auto); /* Utilisez 5 colonnes */
+  grid-template-rows: repeat(10, auto); /* Utilisez 2 lignes */
+  grid-gap: 5px;
+  box-shadow: 0px 7px 25px 5px rgba(37, 36, 35, 0.747);
 }
 
 .project-info div {
-  margin-bottom: auto;
-  display: flex;
-  font-weight: 100px;
-  flex-direction: column;
-  font-weight: 100px;
-  max-block-size: none;
-  
+  margin-bottom: 10px;
+  padding: 10px;
 }
-@media (max-width: 1000px) {
-  .project-info {
-    position: static; /* Change la position en static pour que cela occupe tout l'espace disponible en largeur */
-    right: auto; /* Annule la propriété right pour permettre le passage en bas */
-    width: 1000%; /* Largeur à 100% pour occuper toute la largeur de l'écran */
+
+.titres {
+  color: #0c545b;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  padding: 8px;
+  font-size: 2vh;
+  text-align: center;
+  grid-column: span 1; /* Utilisez la largeur d'une colonne */
+}
+
+.chifre {
+  background-color: #f8f8f8;
+  color: #1362ac;
+  border-radius: 3px;
+  padding: 10px;
+  text-align: center;
+  grid-column: span 1; /* Utilisez la largeur d'une colonne */
+}
+
+.close-button {
+  grid-column: span 6; /* Utilisez toute la largeur de la grille */
+  text-align: center;
+}
+
+.close-button button {
+  font-weight: 200;
+        cursor: pointer;
+        transition: box-shadow .4s ease;
+  background-color: #cb1b1bce; /* Couleur de fond du bouton */
+  color: rgb(231, 236, 211); /* Couleur du texte du bouton */
+  border: none; /* Supprimez les bordures du bouton */
+  border-radius: 3px; /* Ajoutez un peu de courbure au bouton */
+  padding: 8px 16px; /* Ajoutez un peu d'espace à l'intérieur du bouton */
+  font-size: 16px; /* Taille de la police */
+  cursor: pointer; 
+  &:hover {
+    box-shadow: 1px 1px 5px #555;  
+  }
+    
+  &:active {
+      box-shadow: 1px 1px 7px #989393;  
+  }/* Changez le curseur lorsqu'il survole le bouton */
+}
+
+.close-button button:hover {
+  background-color: #e63232ea;
+  font-weight: 200;
+        cursor: pointer;
+        transition: box-shadow .4s ease;
+        &:hover {
+          box-shadow: 1px 1px 5px #555;  
+        }
+          
+        &:active {
+            box-shadow: 1px 1px 7px #222;  
+        } /* Changez la couleur de fond du bouton au survol */
+}
+
+
+/* Les titres de la deuxième ligne occupent deux colonnes */
+.titres:nth-child(n+6) {
+  grid-column: span 2; /* Utilisez la largeur de deux colonnes */
+}
+
+/* ProjectInfo.css pour Mobile*/
+
+
+
+/*pour carte global dashboard*/
+@media screen and (min-width: 1200px) {
+  .slds-card {
+    width: calc(100% / 6 - 2vh); /* Définir la largeur des cartes pour s'adapter à 6 cartes par ligne */
+    margin-right: 100vh;
+     /* Ajouter une marge à droite pour séparer les cartes */
   }
 }
 
-.chifre{
-  padding: 3px;
-  width: 10px;
-  text-align: right;
-  font-size: 15px;
+
+
+
+.project-infos {
+  background-color: #3c6b70f8;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  position: fixed;
+  top: 55%; /* Centre vertical initial */
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  width: auto;
+  max-width: auto;
+  height: auto;
+  margin: auto;
+  font-size: 20px;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(10, auto);
+  grid-gap: 5px;
+  box-shadow: 0 2px 2px px rgba(129, 126, 124, 0.747);
 }
 
+/* Ajoutez des classes spécifiques au contenu du panneau ici si nécessaire */
+
+.project-infos.minimized {
+  top: 10px; /* Ajustez la position vers le haut lorsque minimisé */
+  transform: translateX(-50%);
+}
+
+/* Autres styles restent inchangés */
 
 
-.titres{
-  color: #0a8f9b;
+.project-infos div {
+  margin-bottom: 4px;
+  padding: 1px;
+  margin: 1px;
+  margin-top: 2px;
+ 
+}
+
+.titress {
+  color: #0c545b;
   background-color: #f8f8f8;
-  background-size: 200px;
   border-radius: 3px;
-  size: 20px;width: 100%;
-  font-weight: 100px;
-  padding: 3px;
+  padding: 8px;
+  font-size: 2vh;
+  text-align: center;
+  grid-column: span 1; 
+  color: #0c545b;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  padding: 8px;
+  font-size: 2vh;
+  text-align: center;
+  grid-column: span 1; 
 }
-.titres div{
-  margin-bottom: 10px;
+.titress div{
+  margin-top: auto;
+}
+
+.chifres {
+  background-color: #f8f8f8;
+  color: #1362ac;
+  border-radius: 3px;
+  padding: 10px;
+  text-align: center;
+}
+
+.close-buttons {
+  text-align: center;
+}
+
+.close-buttons button {
+  font-weight: 200;
+  cursor: pointer;
+  transition: box-shadow .4s ease;
+background-color: #cb1b1bce; /* Couleur de fond du bouton */
+color: rgb(231, 236, 211); /* Couleur du texte du bouton */
+border: none; /* Supprimez les bordures du bouton */
+border-radius: 3px; /* Ajoutez un peu de courbure au bouton */
+padding: 8px 16px; /* Ajoutez un peu d'espace à l'intérieur du bouton */
+font-size: 16px; /* Taille de la police */
+cursor: pointer; 
+&:hover {
+box-shadow: 1px 1px 5px #555;  
+}
+
+&:active {
+box-shadow: 1px 1px 7px #989393;  
+}
+/* Taille de la police */
+}
+
+.close-buttons button:hover {
+  background-color: #e63232ea;
+}
+
+/* Les titres de la deuxième ligne occupent deux colonnes */
+.titres:nth-child(n+6) {
+  grid-column: span 2; /* Utilisez la largeur de deux colonnes */
+}
+
+/* Styles pour les écrans en mode paysage sur les téléphones */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .project-infos {
+    width: 35%; /* Ajustez la largeur du panneau */
+    max-width: 50%; /* Ajustez la largeur maximale */
+    font-size: 14px;
+    margin-top: -8px;
+    padding: 6px; /* Ajustez la taille de la police */
+  }
+}
+
+/* Autres styles restent inchangés */
+/* Styles pour les écrans en mode paysage sur les téléphones */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .close-buttons {
+    margin-top: -10px; /* Ajustez l'espacement entre le contenu et le bouton de fermeture */
+  }
+
+  .close-buttons button {
+    padding: 6px 2px; /* Ajustez la taille du bouton */
+    font-size: 10px;
+    margin-top: -30px;
+    width: 100px; /* Ajustez la taille de la police */
+  }
+
+  /* Ajoutez des styles pour la partie non visible près du bouton si nécessaire */
 }
 
 
+
+
+
+
+
+
+
+.close {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Pour occuper toute la largeur du conteneur parent */
+  font-size: -200px; /* Réduire la taille du texte du lien */
+}
+
+.close img {
+  width: 120px; /* Réduire la largeur de l'image */
+  height: auto;
+  margin-top: 0px;
+  margin-left: 180%;
+  padding: 0x;
+  max-width: 100%;
+}
+
+
+
+
+
+
+
+
+.createreportts {
+  color: #f8f8f8;
+  background-color: #ccdfe2;
+  background-position:  3;
+  font-size: 1vw;
+  padding: 8px ;
+  height: auto;
+  transition: background-color 0.6s ease, transform 0.3s ease; /* Ajout de transitions pour une animation en douceur */
+  animation: pulse 1.5s infinite; 
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(37, 36, 35, 0.747);
+  background-color: rgb(238,237,338);/* Ajout d'une animation pulsée initiale */
+}
 
 
 .createreportts:hover {
-  background-color: #1362ac; /* Couleur de fond lorsque survolé  createreportsst*/
+  background-color: #4e8b9c; /* Couleur de fond lorsque survolé  createreportsst*/
   transform: scale(1); /* Légère mise à l'échelle lorsqu'il est survolé */
   animation:alternate; /* Désactive l'animation pulsée pendant le survol */
 }
@@ -343,12 +483,6 @@ body {
 
 
 
-.titretext{
-  border-radius: 5px;
-  box-shadow: 0 6px 4px 0 rgba(21, 46, 107, 0.599);
-  border-color: #72c3d0;
-
-}
 
 
 .dashboard-items {
@@ -397,43 +531,43 @@ body {
   }
 }
 
-
-
-
-
 /* beneficiaire-list.css #238237238
 #231232232*/
 
 
 /* beneficiaire-list.css */
 
+
+
 .beneficiaire-list {
   margin-top: 25px;
-  padding: 0;
+  padding: -2px;
   max-height: auto;
   overflow-x: auto; /* Ajoute une barre de défilement horizontale si le contenu est trop large */
   max-width: 100%;
+  font-size: 1.4vw;
   width: auto;
   margin: auto; 
   position: sticky;
   border-radius: 8px;
-  box-shadow: 0 8px 16px 0 rgba(37, 36, 35, 0.747);
+  box-shadow: 0 10px 16px 0 rgba(37, 36, 35, 0.747);
   background-color: rgb(238,237,338);
 }
 
 /* Styles pour rendre le tableau responsive */
 .beneficiaire-list table {
   width: 100%; /* Utilisez 100% pour que la table occupe toute la largeur du conteneur */
-  margin-bottom: 70px;
-  font-size: 14px;
+  margin-bottom: 20px;
+  height: 20px;
+  font-size: 1.4vw;
   font-family: "Poppins", sans-serif;
-  line-height: 20px;
+  line-height: 15px;
   overflow-y: auto;
   position: relative;
   max-width: 100%; /* Utilisez cette propriété pour éviter le débordement de la largeur de la fenêtre */
   table-layout: fixed;
   border-radius: 12px;
-  box-shadow: 0 8px 16px 0 rgba(16, 55, 105, 0.614);
+  box-shadow: 0 8px 14px 0 rgba(16, 55, 105, 0.614);
   border-color: #fff;
   background-color: #faf9f9;
 }
@@ -447,6 +581,7 @@ body {
   word-wrap: break-word;
   resize: horizontal;
   overflow: hidden;
+  font-size: 12px;
   text-align: center;
   border-radius: 7px;
   box-shadow: 0 8px 16px 0 rgba(50, 28, 12, 0.852);
@@ -456,8 +591,8 @@ body {
 
 .beneficiaire-list th,
 .beneficiaire-list td {
-  padding: 15px;
-  border-radius: 7px;
+  padding: 10px;
+  border-radius: 5px;
   box-shadow: 0 8px 16px 0 rgba(48, 49, 51, 0.847);
   border-color: #93dde8;
   
@@ -539,10 +674,7 @@ body {
 }
 
 
-
-
 .AddProgram{
-
   display: flex;
   flex: 3;
   justify-content: flex-start;
@@ -569,6 +701,11 @@ body {
   size: 35px;
   margin-left: 30px;
   font-variant: inherit;
+}
+.titrereports {
+  display: inline-block;
+  text-underline-offset: 7px;
+   /* Pour que le texte occupe seulement la largeur nécessaire */
 }
 
 
@@ -643,91 +780,24 @@ body {
   justify-content: space-between;
 }
 
-.doughnut-chart {
-  width: 237px;
-  position: absolute;
-  margin-top: 45%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  left: 80rem;
-  height: 255px;
-}
-@media screen and(max-width: 1000px) {
-  .doughnut-chart{width: 50%;}
-  
-}
-
-.doughnutchart {
-  width: 237px;
-  position: absolute;
-  top: 124%;
-  left: 65rem;
-  height: 248px;
-  
-}
-
-
-
-/*css pour graphe report qualification pourcentage et sexe pourcentage*/
-
-.doughnut-chartss {
-  width: 237px;
-  position: absolute;
-  margin-top: -40;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  left: 80rem;
-  height: 215px;
-}
-
-
-@media screen and(max-width: 300px) {
-  .doughnut-chartss{
-    width: 100%;
-  }
-  .doughnut-chartss{
-    font-size: 1rem;
-  } 
-}
-
-
-
-.doughnutchartss {
-  width: 237px;
-  position: absolute;
-  top: 15.5rem;
-  left: 65rem;
-}
-
-@media screen and(max-width: 300px) {
-  .doughnutchartss{
-    width: 100%;
-  }
-  .doughnutchartss{
-    font-size: 1rem;
-  }
-  
-}
-
-
-.titrereports {
-  display: inline-block;
-  text-underline-offset: 7px;
-   /* Pour que le texte occupe seulement la largeur nécessaire */
-}
-
-.slideFromRight {
-  animation: slideRightToLeft 10s linear infinite;
-}
 
 @keyframes slideRightToLeft {
   0% {
     transform: translateX(100%);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(calc(-100% + 100vw)); /* Assure que la dernière lettre reste visible */
   }
 }
+
+.titrereports {
+  animation: slideRightToLeft 10s linear infinite forwards; /* Ajoute "forwards" pour que l'animation reste à sa position finale */
+}
+
+
+
+
+
 .recentreport{
   margin-top: 0px;
 }
@@ -768,11 +838,6 @@ body {
     max-height: 100px; /* Largeur maximale lorsque la largeur de l'écran est d'au moins 768px */
   }
 }
-.circulaire{
-  margin: 10px;
-  width: 100px;
-  height: 100px;
-}
 
 
 
@@ -787,7 +852,7 @@ body {
   border-color: #93dde8;
 
 }
-/* styles.css */
+
 
 
 
@@ -843,18 +908,14 @@ body {
   }
 }
 
-.ellipsis-texts{
-  border-radius: 7px;
-  box-shadow: 0 8px 16px 0 rgba(166, 185, 240, 0.599);
-  border-color: #93dde8;
-}
+
 
 .bold-title {
   font-weight: bold;
   box-shadow: #1362ac;
   text-align: center;
   width: 70px;
-  font-size: 1px;
+  font-size: 2vh;
 }
 
 
@@ -870,11 +931,7 @@ body {
 /* styles.css */
 
 
-.slds-card {
-  color: rgb(44, 52, 116);
-  transition: color 0.3s ease, box-shadow 0.3s ease; /* Animation de transition */
-  cursor: pointer; /* Ajoutez cela pour indiquer que l'élément est interactif */
-}
+
 
 .slds-card:hover {
   color: rgb(234, 197, 60); /* Couleur au survol */
@@ -882,20 +939,17 @@ body {
 }
 
 .slds-card { 
-  font-weight: bold;
-  margin-bottom: -8px;
-  text-align: 20px;
- 
+  font-weight: initial;
+  margin-bottom: -10px;
+  padding: auto;
+  text-align: -20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  transition: color 0.3s ease, box-shadow 0.3s ease; /* Animation de transition */
+  cursor: pointer; 
   
 }
 
 
-
-.bold-title {
-  color: #354a74;
-  transition: color 0.3s ease, box-shadow 0.3s ease; /* Animation de transition */
-  cursor: pointer; /* Ajoutez cela pour indiquer que l'élément est interactif */
-}
 
 .bold-title:hover {
   color: rgb(7, 113, 174); /* Couleur au survol */
@@ -903,19 +957,18 @@ body {
 }
 
 .bold-title {
-  font-size: 14px;
-  font-weight: bold;
+  transition: color 0.3s ease, box-shadow 0.3s ease; /* Animation de transition */
+  cursor: pointer;
+  font-size: 2vh;
   border-radius: 3px;
   color: #6f6969;
+  box-shadow: 0 6px 10px rgba(240, 243, 245, 0.734);
   text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   
 }
 
-.slds-cards{
-  
-  
-  font-size: 20px;
-}
+
 .resize{
   max-width: auto;
 }
@@ -923,7 +976,6 @@ body {
 .creerun-rapport{
   background-color: #1dbfce;
   color: #b81212;
- 
   font-family:'Courier New', Courier, monospace;
   font-weight: bolder;
   max-width: auto;
@@ -933,11 +985,8 @@ body {
   text-align: center;
   margin-left: auto;
   background-origin: padding-box;
-  padding: auto;
- 
-  
+  padding: auto; 
   box-shadow: 0 2px 16px 0 rgba(187, 181, 181, 0.847);
-  
   font-size: 13px;
 }
 
@@ -954,6 +1003,638 @@ body {
   }
 }
 
+.marquee-w {
+  position: relative;
+  display: block;
+  width: 90%; /* Utilisation d'une largeur relative */
+  max-width: 1000px; /* Limite la largeur maximale */
+  height: 53px;
+  margin: 0 auto; /* Centre l'élément horizontalement */
+  overflow: hidden;
+  top:-32px;
+}
+
+.marquee {
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%; /* Utilisation de la largeur à 100% */
+}
+
+.marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  -webkit-text-stroke: 0.5px #245fab;
+  white-space: nowrap;
+  height: 100%; /* Ajuste la hauteur à 100% */
+  line-height: 90px; /* Ajuste la hauteur de la ligne */
+  font-size: 15px;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+/*Pour le tableau programme*/
+.container {
+  transition: margin-left 0.5s;
+}
+
+.sidebar-open .container {
+  margin-left: 500px; 
+}
+
+/* Navleft.css */
+.menu-item:hover,
+.submenu:hover {
+  background-color: red; /* Changez cela en couleur de survol souhaitée */
+}
 
 
+/*Photo*/
+
+.photo-titre {
+  color: rgb(47, 47, 120);
+  font-size: 1.8vw; /* Taille de la police basée sur la largeur de la vue */
+  text-align: center;
+   /* Marge basée sur la hauteur de la vue */
+  background-color: rgb(229, 224, 224);
+  margin-top: 2vh; /* Marge supérieure basée sur la hauteur de la vue */
+  border-radius: 6px;
+  box-shadow: 0 4px 8px 0 rgba(48, 49, 51, 0.653);
+  border-color: #dd0bc8;
+}
+@media only screen and (max-width: 768px) {
+  .photo-list table tbody tr {
+    display: block;
+    margin-bottom: 12px; /* Espacement entre les colonnes */
+  }
+}
+
+.photo-table{
+  border-radius: 7px;
+  box-shadow: 0 4px 8px 0 rgba(48, 49, 51, 0.653);
+  border-color: #d8dedf;
+}
+.titretext{
+  padding: -15px;
+  max-width: auto;
+  font-size: 14px;
+  margin-top: auto;
+  float: center;
+  border-radius: 5px;
+  box-shadow: 0 6px 4px 0 rgba(21, 46, 107, 0.599);
+  border-color: #72c3d0;
+
+}
+.titre-title{
+  font-size: 10px; /* Taille de la police basée sur la largeur de la vue */
+  text-align: center;
+  padding: 0px;
+  max-width: auto;
+  margin-bottom: 4vh; /* Marge basée sur la hauteur de la vue */
+  background-color:#9BBEC8;
+  margin-top: 1vh; /* Marge supérieure basée sur la hauteur de la vue */
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 #427D9D;
+  border-color: #dd0bc8;
+}
+.barre-soulignement {
+  border-bottom: 3px double #d10808; /* Utilisez "double" pour une barre double */
+  width: auto; /* Ou spécifiez la largeur désirée */
+  margin-top: 2vh;
+  font-size: 1vh; /* Ajustez la marge supérieure selon vos besoins */
+  margin-bottom: 30px;
+  margin-top: -5px; /* Ajoutez un espace entre la barre et le titre */
+}
+.button-upload{
+  margin-top: -5px;
+  font-size: small;
+}
+.logo-upload{
+  background-color: #8cbdd7;
+  margin-top: 0px;
+}
+.uploaded-row{
+ 
+  
+  margin: -25px 430px;
+  margin-top: auto;
+  align-items: center;
+  border-radius: 5px;
+  
+}
+.main-mai{
+  font-size: 1.5vh;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px 0 rgba(48, 49, 51, 0.653);
+  border-color: #74c37c;
+  background-color: #bfcdce;
+}
+.browse{
+  margin-top: -7px;
+  margin-left: auto;
+  font-size: 2vh;
+  padding: 1px 5px;
+}
+.bouton-save{
+  background-color: #2c7849;
+  font-size: 2vh;
+  color: rgb(210, 226, 30);
+  padding: 1px 5px;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px 0 rgba(48, 49, 51, 0.653);
+  border-color: #74c37c;
+  margin-left: 50px;
+}
+.liste-deroulante{
+  background-color: #F6995C;
+  margin-left: 70px;
+  font-size: 2vh;
+  margin: auto;
+  padding: 1px 5px;
+  color: rgb(34, 57, 30);
+  border-radius: 7px;
+  box-shadow: 0 6px 8px 0 rgba(68, 105, 180, 0.653);
+  border-color: #d8dedf;
+}
+
+
+
+
+
+/* Styles pour les petits écrans */
+@media only screen and (max-width: 600px) {
+  .titre-title {
+    font-size: 10px; /* Ajuster la taille de la police pour les petits écrans */
+  }
+  
+  .barre-soulignement {
+    margin-top: 1vh; /* Ajuster la marge pour les petits écrans */
+    margin-bottom: 15px; /* Ajuster la marge pour les petits écrans */
+  }
+
+  .uploaded-row {
+    margin: 10px 20px; /* Ajuster la marge pour les petits écrans */
+  }
+
+  .browse {
+    margin-left: 10px; /* Ajuster la marge pour les petits écrans */
+  }
+
+  .liste-deroulante {
+    margin-left: 5px; /* Ajuster la marge pour les petits écrans */
+  }
+}
+
+/* Styles pour les écrans de taille moyenne */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Ajoutez ici vos styles spécifiques pour les écrans de taille moyenne */
+}
+
+/* Styles pour les grands écrans */
+@media only screen and (min-width: 1025px) {
+  /* Ajoutez ici vos styles spécifiques pour les grands écrans */
+}
+/* Styles pour les petits écrans */
+@media only screen and (max-width: 600px) {
+  /* Autres styles ici */
+
+  .photo-table {
+    display: flex;
+    flex-direction: column; /* Afficher les photos en colonnes */
+    align-items: center; /* Centrer les photos horizontalement */
+  }
+
+  .photo-table td {
+    margin-bottom: 10px; /* Espacement entre chaque photo */
+  }
+}
+
+
+.responsive-image-container {
+  width: 100%;
+  padding-bottom: 100%; /* Ratio d'aspect 1:1 */
+  position: relative;
+  overflow: hidden;
+}
+
+.responsive-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+.mobile-photo-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+
+/*A propos program*/
+.containers {
+  max-width: 1500px;
+  margin: 10px 3px;
+  padding: 70px;
+  max-height: 10px;
+  background-color: #f0eded;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(174, 172, 172, 0.1);
+  overflow-y: auto; /* Ajout de défilement */
+  max-height: calc(100vh - 40px); /* La hauteur maximale de la container sera la hauteur de la fenêtre moins les marges */
+}
+
+.title {
+  font-size: 18px;
+  color: #6d81e5;
+  margin-bottom: 3px;
+  background-color: #fcf9f9;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(240, 237, 237, 0.1);
+}
+
+.sub-title {
+  font-size: 20px;
+  color: #4954cb;
+  margin-top: 20px;
+}
+
+.description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.nav-left{
+  font-size: 12px;
+  margin-top: 18px;
+}
+
+
+
+
+
+/*Color footer*/
+.footer {
+  background-color: #05091f;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border-top: 6px solid #329dd3;
+}
+
+.footer-title {
+  color: #f9fbfc;
+  margin-bottom: 20px;
+}
+
+.footer-label {
+  color: #f9fbfc;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.footer-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+
+.footer-button {
+  background-color: #1095d4;
+  color: rgb(255, 254, 254);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.footer-button:hover {
+  background-color: #1095d4;
+}
+
+.card-text{
+  font-size: 15px;
+}
+
+/* pour side bar */
+.responsive-menu {
+  max-height: calc(100vh - 53px); 
+  overflow-y: auto;
+  margin-left: auto; 
+  padding: -15px;/* Activer le défilement vertical si nécessaire */
+}
+
+
+/* Ajoutez ces styles à votre fichier CSS existant */
+
+/* Masquer le sidebar sur les téléphones mobiles */
+@media only screen and (max-width: 576px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Afficher uniquement l'icône sur les téléphones mobiles */
+@media only screen and (max-width: 576px) {
+  .sidebar-icon {
+    display: block;
+  }
+}
+
+/* Masquer la liste sur les téléphones mobiles */
+@media only screen and (max-width: 576px) {
+  .horizontal-list {
+    display: none;
+  }
+}
+
+/* Afficher la liste horizontale sous forme de carte sur les téléphones mobiles */
+@media only screen and (max-width: 576px) {
+  .horizontal-card-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .horizontal-card-list::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.Navleft .ant-menu-item:hover {
+  background-color: #080808; /* Couleur de fond au survol */
+}
+.Navleft .ant-menu-item:hover {
+  background-color: #e6f7ff; /* Couleur de fond au survol */
+}
+.user{
+  color: #05091f;
+  background-color: #0a8f9b;
+}
+.barre-photo{
+  border-bottom:  double #2c83d5; /* Utilisez "double" pour une barre double */
+  width: auto; /* Ou spécifiez la largeur désirée */
+  margin-top: 2vh; /* Ajustez la marge supérieure selon vos besoins */
+  margin-bottom: 5px;
+  margin-top: 2px;
+  font-size: 1vw; 
+}
+/* Styles de base pour le wrapper */
+/* Styles pour les ordinateurs de bureau */
+.wrapper {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 360px; /* Largeur maximale du wrapper */
+  width: 100%; /* Largeur par défaut */
+}
+
+/* Styles pour les appareils mobiles */
+@media screen and (max-width: 768px) {
+  .wrapper {
+    max-width: auto; 
+    margin-left: 0%;
+    width: auto;/* Ajustement de la largeur pour les appareils mobiles */
+  }
+}
+
+
+/* Styles pour les écrans de bureau */
+@media screen and (min-width: 769px) {
+  .wrapper {
+    width: 100%; /* Ajustement pour les écrans de bureau */
+  }
+}
+
+/* Styles pour les appareils mobiles */
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 80%; /* Ajustement pour les appareils mobiles */
+  }
+}
+
+
+.form-field {
+  margin-bottom: 20px; /* Ajoute un espace entre les champs */
+}
+
+.form-field input {
+  width: 100%; /* Remplissez la largeur de son parent */
+  padding: 10px; /* Ajoute un espace autour du texte */
+  border: 1px solid #ccc; /* Ajoute une bordure grise */
+  border-radius: 5px; /* Coins arrondis */
+}
+
+.form-field input:focus {
+  outline: none; /* Supprime la bordure de mise au point par défaut */
+  border-color: #007bff; /* Change la couleur de la bordure lorsqu'elle est en focus */
+}
+
+.form-field i {
+  margin-right: 10px; /* Ajoute un espace entre l'icône et le champ */
+  color: #666; /* Couleur grise pour l'icône */
+}
+
+
+@media screen and (orientation: landscape) {
+  .btn-log {
+    max-width: 500px;
+    max-height: 500px; 
+    padding: 5px 100px;
+    margin-top: -15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+    box-shadow: 0px 5px 20px rgba(240, 237, 237, 0.1);/* Ajustement de la largeur maximale pour le mode paysage */
+    /* Largeur par défaut */
+  }
+}
+
+
+
+
+
+
+
+
+/* Ajoutez d'autres règles @media pour des ajustements supplémentaires si nécessaire */
+.btn-log {
+  /* Styles de base */
+  background-color: #007bff; /* Couleur de fond par défaut */
+  color: #fff; /* Couleur du texte par défaut */
+  border: none;
+  border-radius: 4px;
+  padding: 7px 40px;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transition fluide de 0.3s pour les changements */
+
+  /* Lorsque le curseur passe sur le bouton */
+  &:hover {
+    background-color: #0056b3; /* Nouvelle couleur de fond */
+    color: #fff; /* Nouvelle couleur de texte */
+    transform: scale(1.05); /* Augmentation de la taille */
+  }
+
+  /* Lorsque le bouton est activé */
+  &:active {
+    transform: scale(0.95); /* Réduction de la taille lorsqu'il est enfoncé */
+  }
+
+  /* Lorsque le bouton est en focus (par exemple lorsqu'il est sélectionné avec la touche Tab) */
+  &:focus {
+    outline: none; /* Suppression de la bordure de focus par défaut */
+    box-shadow: 0 3 0 3px rgba(0, 123, 255, 0.5); /* Ajout d'une bordure de focus personnalisée */
+  }
+}
+
+.col-extended {
+  width: 150%;
+  
+}
+
+.interface {
+
+  margin: 0 auto; /* Centrer horizontalement */
+  padding: 2px;
+  margin-left: -5px;
+   
+  /* Ajouter un peu d'espace autour du contenu */
+   /* Ajouter un défilement vertical si nécessaire */
+}
+
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.card-item {
+  width: calc(50% - 20px); /* Pour deux colonnes, ajustez la largeur en fonction du nombre de colonnes souhaité */
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 768px) {
+  .card-item {
+    width: 100%; /* Pour les appareils plus petits, occuper toute la largeur */
+  }
+}
+
+.slds-card-graph{
+  box-shadow: 0px 7px 10px rgba(240, 237, 237, 0.1);
+}
+
+.scrollable-content {
+  max-height: 100vh; /* Hauteur maximale */
+  overflow-y: auto; /* Activation du défilement vertical si nécessaire */
+}
+
+/* Navleft font items
+.Navleft p {
+  font-family: Verdana,  sans-serif !important;
+ font-size: 14px;
+ color: #050505;
+  
+
+}
+
+ */
+
+/* Styles par défaut table recent report */
+.table-container {
+  width: 100%;
+ 
+  max-height: -100%;
+ 
+}
+
+/* Media query pour les écrans de taille moyenne (par exemple, les tablettes) */
+@media screen and (max-width: 1024px) {
+  .table-container {
+    margin-left: -1%;
+    margin-right: -10%;
+    max-height: 100%;
+
+  }
+}
+
+/* Media query pour les petits écrans (par exemple, les smartphones) */
+@media screen and (max-width: 768px) {
+  .table-container {
+    margin-left: -5%;
+    margin-right: -5%;
+  }
+}
+.responsive-table{
+  height: 800px;
+  padding: 1px;
+}
+
+
+/* Ajoutez ceci à votre fichier CSS ou à votre balise style */
+.Navleft p {
+  font-family: Verdana, sans-serif;
+  color: #000104;
+  padding: -1px;
+  margin: auto;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: -2px;
+  position: fixed;
+  bottom: auto;
+  width: 100%;
+  z-index: 999;
+  top: 90vh; 
+  left: 14.2%;/* Assurez-vous que le footer est positionné à 90% de la hauteur de la fenêtre du navigateur */
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-lg-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+
+
+/* Ajoutez plus de styles selon vos besoins */
+/* map.css */
+
+/* Définissez les styles pour le conteneur de la carte */
+.map-container {
+  height: 400px;
+}
 

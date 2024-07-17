@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useBaseUrl } from '../../BaseUrl';
 
 export default function EditBeneficiaire() {
   const {id, programId, composanteId, typeprojetId, petitprojetId, beneficiaireId } = useParams();
 
   const navigate = useNavigate();
-
+ const baseUrl= useBaseUrl();
   const [beneficiaire, setBeneficiaire] = useState({
     nom: "",
     prenom: "",
@@ -46,7 +47,7 @@ export default function EditBeneficiaire() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/beneficiaire/${id}`);
+      await axios.put(`${baseUrl}/beneficiaire/${id}`);
       navigate(`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${petitprojetId}/beneficiaire`);
     } catch (error) {
       console.error('Erreur Axios:', error);
@@ -54,7 +55,7 @@ export default function EditBeneficiaire() {
   };
 
   const loadBeneficiaire = async () => {
-    const result = await axios.get(`http://localhost:8080/petitprojet/${petitprojetId}/beneficiaire`, beneficiaire);
+    const result = await axios.get(`${baseUrl}/petitprojet/${petitprojetId}/beneficiaire`, beneficiaire);
     setBeneficiaire(result.data);
   };
 

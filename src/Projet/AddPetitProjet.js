@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { jsxDEV } from 'react/jsx-dev-runtime';
 import { jsx as _jsx } from 'react/jsx-runtime';
+import { useBaseUrl } from '../BaseUrl';
 
 
 
 
 export default function AddPetitProjet() {
   const navigate = useNavigate();
+  const baseUrl = useBaseUrl();
   const { typeprojetId, quartierId, petitprojetId, programId, composanteId } = useParams();
 
   const [petitprojet, setPetitProjet] = useState({
@@ -41,7 +43,7 @@ export default function AddPetitProjet() {
     useEffect(() => {
       async function fetchQuartiers() {
         try {
-          const response = await axios.get(`http://localhost:8080/quartier`);
+          const response = await axios.get(`${baseUrl}/quartier`);
           setQuartiers(response.data);
         } catch (error) {
           console.error('Erreur lors de la récupération des zones :', error);
@@ -86,16 +88,17 @@ export default function AddPetitProjet() {
 
     setPetitProjet({ ...petitprojet, totalbeneficiaire: total });
 
-    await axios.post(`http://localhost:8080/petitprojet/typeprojet/${typeprojetId}/quartier/${quartierId}`);
+    await axios.post(`${baseUrl}/petitprojet/typeprojet/${typeprojetId}/quartier/${quartierId}`);
 
     navigate(`/App/typeprojet/${typeprojetId}/petitprojet/add`);
   };
 
   return (
     <div className="container ">
-      <h2 className="text-center m-4 title">Enregistrer un  Projet</h2>
+      <h2 className="titretext">Enregistrer un  Projet</h2>
     <div className="row  frontcol" >
       <div className="col  ">
+
       <h2 className="information">Information</h2> 
         <form onSubmit={(e) => onSubmit(e)} >
           
@@ -404,23 +407,23 @@ export default function AddPetitProjet() {
               />
             </div>
           </div>
-  </div>
-  <div className='bouton'>
-          <button type="submit" className="btn btn-outline-success">
-          Enregistrer
-          </button>
+            </div>
+            <div className='bouton'>
+                <button type="submit" className="btn btn-outline-success">
+                Enregistrer
+                </button>
   
-          <Link
-            className="btn btn-outline-danger mx-5"
-            to={`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${petitprojetId}`}
-            
-          >
-            Annuler
-          </Link>
-     </div>
-        </form>
-        
-      </div>
+                <Link
+                  className="btn btn-outline-danger mx-5"
+                  to={`/App/program/${programId}/composante/${composanteId}/typeprojet/${typeprojetId}/petitprojet/${petitprojetId}`}
+                  
+                >
+                  Annuler
+                </Link>
+            </div>
+                </form>
+                
+              </div>
     </div>
   </div>
   
